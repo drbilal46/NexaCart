@@ -15,11 +15,6 @@
 
 <style>
 
-/* =========================================================
-   NEXACART — COMPLETE HOMEPAGE
-   HTML + CSS + JAVASCRIPT
-========================================================= */
-
 :root{
   --black:#191714;
   --dark:#24211d;
@@ -826,10 +821,6 @@ section{
   margin-top:17px;
 }
 
-.footer-links{
-  display:contents;
-}
-
 .footer-column{
   display:flex;
   flex-direction:column;
@@ -961,7 +952,6 @@ section{
   .editorial-image{
     min-height:400px;
   }
-
 }
 
 @media(max-width:650px){
@@ -1143,10 +1133,7 @@ section{
     flex-direction:column;
     gap:8px;
   }
-
 }
-
-/* ================= ACCESSIBILITY ================= */
 
 :focus-visible{
   outline:2px solid var(--accent);
@@ -1156,35 +1143,29 @@ section{
 </style>
 </head>
 
-
 <body>
 
-<!-- TOP BAR -->
 <div class="top-bar">
   FREE SHIPPING ON ORDERS OVER $75
 </div>
 
-
-<!-- HEADER -->
 <header class="header">
 
   <div class="header-inner">
 
-    <a href="#home" class="logo">
+    <a href="index.html" class="logo">
       NEXA<span>CART</span>
     </a>
 
-
     <nav class="nav">
 
-      <a href="#home" class="active">Home</a>
-      <a href="#categories">Categories</a>
-      <a href="#products">Shop</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="shop.html">Shop</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
 
     </nav>
-
 
     <div class="header-actions">
 
@@ -1198,7 +1179,6 @@ section{
         <span>Search</span>
 
       </button>
-
 
       <button class="icon-btn" id="cartBtn" aria-label="Shopping cart">
 
@@ -1214,7 +1194,6 @@ section{
 
       </button>
 
-
       <button class="menu-btn" id="menuBtn" aria-label="Open menu">
         <span></span>
         <span></span>
@@ -1224,12 +1203,11 @@ section{
 
   </div>
 
-
   <nav class="mobile-nav" id="mobileNav">
 
-    <a href="#home">Home</a>
-    <a href="#categories">Categories</a>
-    <a href="#products">Shop</a>
+    <a href="index.html">Home</a>
+    <a href="categories.html">Categories</a>
+    <a href="shop.html">Shop</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
 
@@ -1237,12 +1215,10 @@ section{
 
 </header>
 
-
-
 <main id="home">
 
-
 <!-- HERO -->
+
 <section class="hero">
 
   <div class="hero-content">
@@ -1274,7 +1250,6 @@ section{
 
     </div>
 
-
     <div class="hero-info">
 
       <div>
@@ -1296,7 +1271,6 @@ section{
 
   </div>
 
-
   <div class="hero-visual">
 
     <div class="hero-image">
@@ -1308,7 +1282,6 @@ section{
 
     </div>
 
-
     <div class="hero-product">
 
       <small>FEATURED ITEM</small>
@@ -1318,12 +1291,11 @@ section{
         Wrist Watch
       </h3>
 
-      <a href="#products">
+      <a href="product.html?id=classic-wrist-watch">
         Discover →
       </a>
 
     </div>
-
 
     <div class="hero-number">
       N<span>.</span>01
@@ -1333,9 +1305,8 @@ section{
 
 </section>
 
-
-
 <!-- CATEGORIES -->
+
 <section class="category-section" id="categories">
 
   <div class="section-head">
@@ -1352,16 +1323,15 @@ section{
 
     </div>
 
-    <a href="#products" class="section-link">
+    <a href="shop.html" class="section-link">
       View products →
     </a>
 
   </div>
 
-
   <div class="category-grid">
 
-    <a href="#products" class="category-card large">
+    <a href="shop.html?category=electronics" class="category-card large">
 
       <img
         src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=85"
@@ -1379,8 +1349,7 @@ section{
 
     </a>
 
-
-    <a href="#products" class="category-card">
+    <a href="shop.html?category=fashion" class="category-card">
 
       <img
         src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=85"
@@ -1398,8 +1367,7 @@ section{
 
     </a>
 
-
-    <a href="#products" class="category-card">
+    <a href="shop.html?category=accessories" class="category-card">
 
       <img
         src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85"
@@ -1417,8 +1385,7 @@ section{
 
     </a>
 
-
-    <a href="#products" class="category-card wide">
+    <a href="shop.html?category=home" class="category-card wide">
 
       <img
         src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85"
@@ -1440,9 +1407,8 @@ section{
 
 </section>
 
-
-
 <!-- PRODUCTS -->
+
 <section class="products" id="products">
 
   <div class="section-head">
@@ -1459,20 +1425,19 @@ section{
 
     </div>
 
-    <a href="#products" class="section-link">
+    <a href="shop.html" class="section-link">
       Shop all →
     </a>
 
   </div>
 
-
   <div class="product-grid">
 
-
     <!-- PRODUCT 1 -->
+
     <article class="product-card">
 
-      <a href="#products" class="product-image">
+      <a href="product.html?id=wireless-headphones" class="product-image">
 
         <span class="product-tag">
           BESTSELLER
@@ -1485,7 +1450,6 @@ section{
         >
 
       </a>
-
 
       <div class="product-info">
 
@@ -1507,18 +1471,17 @@ section{
 
       </div>
 
-      <a href="#products" class="product-view">
+      <a href="product.html?id=wireless-headphones" class="product-view">
         View product →
       </a>
 
     </article>
 
-
-
     <!-- PRODUCT 2 -->
+
     <article class="product-card">
 
-      <a href="#products" class="product-image">
+      <a href="product.html?id=classic-wrist-watch" class="product-image">
 
         <span class="product-tag">
           FEATURED
@@ -1531,7 +1494,6 @@ section{
         >
 
       </a>
-
 
       <div class="product-info">
 
@@ -1553,18 +1515,17 @@ section{
 
       </div>
 
-      <a href="#products" class="product-view">
+      <a href="product.html?id=classic-wrist-watch" class="product-view">
         View product →
       </a>
 
     </article>
 
-
-
     <!-- PRODUCT 3 -->
+
     <article class="product-card">
 
-      <a href="#products" class="product-image">
+      <a href="product.html?id=urban-running-shoes" class="product-image">
 
         <span class="product-tag sale">
           SALE
@@ -1577,7 +1538,6 @@ section{
         >
 
       </a>
-
 
       <div class="product-info">
 
@@ -1599,18 +1559,17 @@ section{
 
       </div>
 
-      <a href="#products" class="product-view">
+      <a href="product.html?id=urban-running-shoes" class="product-view">
         View product →
       </a>
 
     </article>
 
-
-
     <!-- PRODUCT 4 -->
+
     <article class="product-card">
 
-      <a href="#products" class="product-image">
+      <a href="product.html?id=premium-leather-bag" class="product-image">
 
         <span class="product-tag">
           NEW
@@ -1623,7 +1582,6 @@ section{
         >
 
       </a>
-
 
       <div class="product-info">
 
@@ -1645,7 +1603,7 @@ section{
 
       </div>
 
-      <a href="#products" class="product-view">
+      <a href="product.html?id=premium-leather-bag" class="product-view">
         View product →
       </a>
 
@@ -1655,9 +1613,8 @@ section{
 
 </section>
 
-
-
 <!-- EDITORIAL -->
+
 <section id="about">
 
   <div class="editorial">
@@ -1671,7 +1628,6 @@ section{
       >
 
     </div>
-
 
     <div class="editorial-content">
 
@@ -1701,9 +1657,8 @@ section{
 
 </section>
 
-
-
 <!-- BENEFITS -->
+
 <section>
 
   <div class="benefits">
@@ -1720,7 +1675,6 @@ section{
 
     </div>
 
-
     <div class="benefit">
 
       <span>02</span>
@@ -1733,7 +1687,6 @@ section{
 
     </div>
 
-
     <div class="benefit">
 
       <span>03</span>
@@ -1745,7 +1698,6 @@ section{
       </p>
 
     </div>
-
 
     <div class="benefit">
 
@@ -1763,9 +1715,8 @@ section{
 
 </section>
 
-
-
 <!-- CTA -->
+
 <section>
 
   <div class="cta">
@@ -1783,8 +1734,7 @@ section{
 
     </div>
 
-
-    <a href="#products" class="cta-circle">
+    <a href="shop.html" class="cta-circle">
 
       <span>Shop</span>
 
@@ -1796,9 +1746,8 @@ section{
 
 </section>
 
-
-
 <!-- NEWSLETTER -->
+
 <section id="contact">
 
   <div class="newsletter">
@@ -1815,7 +1764,6 @@ section{
       </h2>
 
     </div>
-
 
     <form id="newsletterForm">
 
@@ -1850,16 +1798,15 @@ section{
 
 </main>
 
-
-
 <!-- FOOTER -->
+
 <footer class="footer">
 
   <div class="footer-main">
 
     <div class="footer-about">
 
-      <a href="#home" class="logo">
+      <a href="index.html" class="logo">
         NEXA<span>CART</span>
       </a>
 
@@ -1870,18 +1817,16 @@ section{
 
     </div>
 
-
     <div class="footer-column">
 
       <h4>SHOP</h4>
 
-      <a href="#products">All Products</a>
-      <a href="#categories">Categories</a>
-      <a href="#products">Featured</a>
-      <a href="#products">New Arrivals</a>
+      <a href="shop.html">All Products</a>
+      <a href="categories.html">Categories</a>
+      <a href="shop.html">Featured</a>
+      <a href="shop.html">New Arrivals</a>
 
     </div>
-
 
     <div class="footer-column">
 
@@ -1889,25 +1834,23 @@ section{
 
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
 
     </div>
-
 
     <div class="footer-column">
 
       <h4>CATEGORIES</h4>
 
-      <a href="#products">Electronics</a>
-      <a href="#products">Fashion</a>
-      <a href="#products">Accessories</a>
-      <a href="#products">Home & Lifestyle</a>
+      <a href="shop.html?category=electronics">Electronics</a>
+      <a href="shop.html?category=fashion">Fashion</a>
+      <a href="shop.html?category=accessories">Accessories</a>
+      <a href="shop.html?category=home">Home & Lifestyle</a>
 
     </div>
 
   </div>
-
 
   <div class="footer-bottom">
 
@@ -1923,18 +1866,9 @@ section{
 
 </footer>
 
-
-
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-
-
 <script>
-
-/* =========================================================
-   NEXACART JAVASCRIPT
-========================================================= */
 
 const menuBtn = document.getElementById("menuBtn");
 const mobileNav = document.getElementById("mobileNav");
@@ -1944,15 +1878,13 @@ const searchBtn = document.getElementById("searchBtn");
 const newsletterForm = document.getElementById("newsletterForm");
 const toast = document.getElementById("toast");
 
-
-/* Mobile Menu */
+/* ================= MOBILE MENU ================= */
 
 menuBtn.addEventListener("click", () => {
 
   mobileNav.classList.toggle("open");
 
 });
-
 
 document.querySelectorAll(".mobile-nav a").forEach(link => {
 
@@ -1964,51 +1896,72 @@ document.querySelectorAll(".mobile-nav a").forEach(link => {
 
 });
 
+/* ================= CART ================= */
 
-/* Cart */
+function getCart(){
 
-let cart = JSON.parse(localStorage.getItem("nexacartCart")) || [];
+  try{
+
+    const savedCart = JSON.parse(
+      localStorage.getItem("nexacartCart")
+    );
+
+    return Array.isArray(savedCart) ? savedCart : [];
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
 
 function updateCartCount(){
 
-  cartCount.textContent = cart.length;
+  const cart = getCart();
+
+  let totalQuantity = 0;
+
+  cart.forEach(item => {
+
+    const quantity = Number(
+      item.quantity ?? item.qty ?? 1
+    );
+
+    totalQuantity += quantity > 0 ? quantity : 1;
+
+  });
+
+  cartCount.textContent = totalQuantity;
 
 }
 
 updateCartCount();
 
-
 cartBtn.addEventListener("click", () => {
 
-  showToast(
-    cart.length
-      ? `You have ${cart.length} item${cart.length > 1 ? "s" : ""} in your cart.`
-      : "Your cart is currently empty."
-  );
+  window.location.href = "cart.html";
 
 });
 
-
-/* Search */
+/* ================= SEARCH ================= */
 
 searchBtn.addEventListener("click", () => {
 
-  document.getElementById("products").scrollIntoView({
-    behavior:"smooth"
-  });
-
-  showToast("Product search will be available in the Shop page.");
+  window.location.href = "shop.html";
 
 });
 
-
-/* Newsletter */
+/* ================= NEWSLETTER ================= */
 
 newsletterForm.addEventListener("submit", event => {
 
   event.preventDefault();
 
-  const email = document.getElementById("email").value.trim();
+  const email = document
+    .getElementById("email")
+    .value
+    .trim();
 
   if(!email) return;
 
@@ -2018,8 +1971,7 @@ newsletterForm.addEventListener("submit", event => {
 
 });
 
-
-/* Toast */
+/* ================= TOAST ================= */
 
 function showToast(message){
 
@@ -2038,4 +1990,4 @@ function showToast(message){
 </script>
 
 </body>
-  </html>
+</html>
