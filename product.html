@@ -58,7 +58,6 @@
       margin: auto;
     }
 
-    /* TOP BAR */
     .top-bar {
       background: var(--dark);
       color: #fff;
@@ -69,7 +68,6 @@
       font-weight: 700;
     }
 
-    /* HEADER */
     .header {
       background: var(--cream-light);
       border-bottom: 1px solid var(--border);
@@ -153,7 +151,6 @@
       display: none;
     }
 
-    /* BREADCRUMB */
     .breadcrumb {
       padding: 22px 0;
       border-bottom: 1px solid var(--border);
@@ -170,7 +167,6 @@
       color: #aaa49b;
     }
 
-    /* PRODUCT */
     .product-section {
       padding: 65px 0 100px;
     }
@@ -352,7 +348,6 @@
       color: #fff;
     }
 
-    /* DETAILS */
     .product-details {
       padding-top: 25px;
       display: grid;
@@ -375,7 +370,6 @@
       text-align: right;
     }
 
-    /* INFO STRIP */
     .info-strip {
       background: var(--dark);
       color: #fff;
@@ -416,7 +410,6 @@
       font-size: 11px;
     }
 
-    /* RELATED PRODUCTS */
     .related-section {
       padding: 90px 0;
     }
@@ -505,7 +498,6 @@
       font-weight: 800;
     }
 
-    /* NEWSLETTER */
     .newsletter {
       background: #e9e2d7;
       padding: 70px 0;
@@ -572,7 +564,6 @@
       background: var(--terracotta);
     }
 
-    /* FOOTER */
     .footer {
       background: var(--dark);
       color: #fff;
@@ -638,7 +629,6 @@
       font-size: 11px;
     }
 
-    /* TOAST */
     .toast {
       position: fixed;
       right: 20px;
@@ -659,7 +649,6 @@
       opacity: 1;
     }
 
-    /* MOBILE */
     @media (max-width: 980px) {
       .nav-links {
         gap: 18px;
@@ -805,12 +794,10 @@
 
 <body>
 
-  <!-- TOP BAR -->
   <div class="top-bar">
     FREE SHIPPING ON ORDERS OVER $75
   </div>
 
-  <!-- HEADER -->
   <header class="header">
     <div class="container nav">
 
@@ -844,7 +831,6 @@
     </div>
   </header>
 
-  <!-- BREADCRUMB -->
   <div class="container breadcrumb">
     <a href="index.html">Home</a>
     <span>/</span>
@@ -853,19 +839,16 @@
     <strong id="breadcrumbName">Product</strong>
   </div>
 
-  <!-- PRODUCT -->
   <main class="product-section">
     <div class="container">
 
       <div class="product-layout">
 
-        <!-- IMAGE -->
         <div class="product-gallery">
           <span class="product-badge" id="productBadge">Featured</span>
           <img id="productImage" src="" alt="Product">
         </div>
 
-        <!-- INFORMATION -->
         <div class="product-information">
 
           <div class="product-category" id="productCategory">
@@ -925,7 +908,6 @@
 
           </div>
 
-          <!-- DETAILS -->
           <div class="product-details">
 
             <div class="detail-row">
@@ -959,7 +941,6 @@
     </div>
   </main>
 
-  <!-- INFO STRIP -->
   <section class="info-strip">
     <div class="container info-grid">
 
@@ -990,7 +971,6 @@
     </div>
   </section>
 
-  <!-- RELATED -->
   <section class="related-section">
     <div class="container">
 
@@ -1060,7 +1040,6 @@
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
   <section class="newsletter">
     <div class="container newsletter-inner">
 
@@ -1085,7 +1064,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
 
@@ -1142,14 +1120,9 @@
     </div>
   </footer>
 
-  <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
   <script>
-    /* =================================
-       NEXACART PRODUCT PAGE JAVASCRIPT
-    ================================= */
-
     const products = {
 
       "wireless-headphones": {
@@ -1311,7 +1284,6 @@
     let currentProduct = null;
     let quantity = 1;
 
-    /* GET PRODUCT FROM URL */
     function loadProduct() {
 
       const params = new URLSearchParams(window.location.search);
@@ -1374,7 +1346,6 @@
       }
     }
 
-    /* QUANTITY */
     function changeQuantity(amount) {
 
       quantity += amount;
@@ -1391,7 +1362,7 @@
         quantity;
     }
 
-    /* ADD TO CART */
+    /* ADD TO CART — IMAGE FIX */
     function addCurrentProductToCart() {
 
       if (!currentProduct) {
@@ -1422,12 +1393,17 @@
         existingProduct.qty =
           existingProduct.quantity;
 
+        /* Ensure old cart items also receive the correct image */
+        existingProduct.image =
+          currentProduct.image;
+
       } else {
 
         cart.push({
           id: currentProduct.id,
           name: currentProduct.name,
           price: currentProduct.price,
+          image: currentProduct.image,
           quantity: quantity,
           qty: quantity
         });
@@ -1454,7 +1430,6 @@
         "1";
     }
 
-    /* BUY NOW */
     function buyNow() {
 
       addCurrentProductToCart();
@@ -1464,7 +1439,6 @@
       }, 500);
     }
 
-    /* CART COUNT */
     function updateCartCount() {
 
       let cart = [];
@@ -1490,24 +1464,20 @@
         totalItems;
     }
 
-    /* GO TO CART */
     function goToCart() {
       window.location.href = "cart.html";
     }
 
-    /* GO TO SHOP */
     function goToShop() {
       window.location.href = "shop.html";
     }
 
-    /* MOBILE MENU */
     function toggleMenu() {
       document
         .getElementById("navLinks")
         .classList.toggle("open");
     }
 
-    /* NEWSLETTER */
     function subscribeNewsletter(event) {
 
       event.preventDefault();
@@ -1524,7 +1494,6 @@
       event.target.reset();
     }
 
-    /* TOAST */
     function showToast(message) {
 
       const toast =
@@ -1542,10 +1511,9 @@
         }, 2800);
     }
 
-    /* START */
     loadProduct();
     updateCartCount();
   </script>
 
 </body>
-  </html>
+            </html>
