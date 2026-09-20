@@ -1,930 +1,2041 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NexaCart — Modern Shopping, Simply Better</title>
+<title>NexaCart — Modern Online Store</title>
 
-  <meta
-    name="description"
-    content="NexaCart is a modern online shopping destination for electronics, fashion, accessories and everyday essentials."
-  >
+<meta name="description" content="NexaCart — a modern online store for electronics, fashion, accessories and lifestyle essentials.">
 
-  <meta name="theme-color" content="#171614">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  >
+<style>
 
-  <link rel="stylesheet" href="style.css">
+/* =========================================================
+   NEXACART — COMPLETE HOMEPAGE
+   HTML + CSS + JAVASCRIPT
+========================================================= */
+
+:root{
+  --black:#191714;
+  --dark:#24211d;
+  --cream:#f5f1e8;
+  --paper:#fbf9f4;
+  --line:#ded8cc;
+  --muted:#756f66;
+  --accent:#b65f3e;
+  --accent-dark:#984b30;
+  --white:#ffffff;
+  --radius:2px;
+  --container:1280px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"DM Sans",sans-serif;
+  color:var(--black);
+  background:var(--paper);
+  line-height:1.6;
+}
+
+img{
+  width:100%;
+  display:block;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+}
+
+/* ================= TOP BAR ================= */
+
+.top-bar{
+  height:34px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:var(--black);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(251,249,244,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+  width:min(var(--container),calc(100% - 48px));
+  height:82px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:700;
+  letter-spacing:4px;
+}
+
+.logo span{
+  color:var(--accent);
+}
+
+.nav{
+  display:flex;
+  gap:34px;
+  align-items:center;
+}
+
+.nav a{
+  position:relative;
+  font-size:13px;
+  font-weight:600;
+  color:#4e4942;
+  transition:.25s;
+}
+
+.nav a:hover,
+.nav a.active{
+  color:var(--black);
+}
+
+.nav a.active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-9px;
+  height:1px;
+  background:var(--accent);
+}
+
+.header-actions{
+  justify-self:end;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.icon-btn{
+  border:0;
+  background:none;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:var(--black);
+}
+
+.icon-btn svg{
+  width:19px;
+  height:19px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+}
+
+.cart-count{
+  min-width:19px;
+  height:19px;
+  padding:0 5px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:var(--accent);
+  color:#fff;
+  border-radius:50%;
+  font-size:9px;
+  font-weight:700;
+}
+
+.menu-btn{
+  display:none;
+  border:0;
+  background:none;
+  width:28px;
+}
+
+.menu-btn span{
+  display:block;
+  height:1px;
+  background:var(--black);
+  margin:6px 0;
+}
+
+.mobile-nav{
+  display:none;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  width:min(var(--container),calc(100% - 48px));
+  margin:0 auto;
+  min-height:650px;
+  display:grid;
+  grid-template-columns:48% 52%;
+  align-items:center;
+  gap:50px;
+  padding:70px 0 90px;
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2.4px;
+  margin-bottom:20px;
+}
+
+.eyebrow::before{
+  content:"";
+  width:28px;
+  height:1px;
+  background:var(--accent);
+}
+
+.hero h1{
+  max-width:650px;
+  font-size:clamp(50px,6vw,86px);
+  line-height:.98;
+  letter-spacing:-4px;
+  font-weight:600;
+}
+
+.hero h1 em{
+  display:block;
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+  color:var(--accent);
+}
+
+.hero-text{
+  max-width:500px;
+  margin-top:28px;
+  color:var(--muted);
+  font-size:15px;
+}
+
+.hero-buttons{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  margin-top:36px;
+}
+
+.primary-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:25px;
+  background:var(--black);
+  color:#fff;
+  padding:17px 22px;
+  font-size:12px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.primary-btn:hover{
+  background:var(--accent);
+  transform:translateY(-2px);
+}
+
+.primary-btn span{
+  font-size:17px;
+}
+
+.text-btn{
+  font-size:12px;
+  font-weight:700;
+  border-bottom:1px solid var(--black);
+  padding-bottom:4px;
+}
+
+.hero-info{
+  display:flex;
+  gap:35px;
+  margin-top:55px;
+}
+
+.hero-info div{
+  display:flex;
+  gap:10px;
+}
+
+.hero-info strong{
+  font-size:11px;
+  color:var(--accent);
+}
+
+.hero-info span{
+  font-size:10px;
+  line-height:1.4;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.hero-visual{
+  position:relative;
+  height:560px;
+}
+
+.hero-image{
+  height:100%;
+  overflow:hidden;
+  background:#e7e0d4;
+}
+
+.hero-image img{
+  height:100%;
+  object-fit:cover;
+  transition:transform .8s ease;
+}
+
+.hero:hover .hero-image img{
+  transform:scale(1.025);
+}
+
+.hero-product{
+  position:absolute;
+  left:-45px;
+  bottom:40px;
+  width:210px;
+  padding:23px;
+  background:#fff;
+  box-shadow:0 15px 45px rgba(0,0,0,.12);
+}
+
+.hero-product small{
+  color:var(--accent);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.hero-product h3{
+  margin:10px 0 15px;
+  font-family:"Playfair Display",serif;
+  font-size:24px;
+  line-height:1.1;
+}
+
+.hero-product a{
+  font-size:10px;
+  font-weight:700;
+}
+
+.hero-number{
+  position:absolute;
+  right:-12px;
+  top:28px;
+  font-family:"Playfair Display",serif;
+  font-size:18px;
+  writing-mode:vertical-rl;
+  letter-spacing:3px;
+}
+
+.hero-number span{
+  color:var(--accent);
+}
+
+/* ================= SECTION ================= */
+
+section{
+  padding:100px 0;
+}
+
+.section-head{
+  width:min(var(--container),calc(100% - 48px));
+  margin:0 auto 42px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+}
+
+.section-title{
+  font-size:48px;
+  line-height:1;
+  letter-spacing:-2px;
+}
+
+.section-title em{
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+  color:var(--accent);
+}
+
+.section-link{
+  font-size:11px;
+  font-weight:700;
+  border-bottom:1px solid var(--black);
+  padding-bottom:4px;
+}
+
+/* ================= CATEGORY ================= */
+
+.category-section{
+  background:var(--cream);
+}
+
+.category-grid{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.35fr 1fr 1fr;
+  grid-template-rows:330px 330px;
+  gap:14px;
+}
+
+.category-card{
+  position:relative;
+  overflow:hidden;
+  background:#ddd;
+}
+
+.category-card.large{
+  grid-row:span 2;
+}
+
+.category-card.wide{
+  grid-column:span 2;
+}
+
+.category-card img{
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+
+.category-card:hover img{
+  transform:scale(1.05);
+}
+
+.category-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.72));
+}
+
+.category-content{
+  position:absolute;
+  z-index:2;
+  bottom:25px;
+  left:27px;
+  right:27px;
+  color:#fff;
+}
+
+.category-content small{
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.category-content h3{
+  font-size:26px;
+  margin:5px 0;
+}
+
+.category-content span{
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+  background:var(--paper);
+}
+
+.product-grid{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.product-card{
+  min-width:0;
+}
+
+.product-image{
+  position:relative;
+  display:block;
+  aspect-ratio:1 / 1.15;
+  overflow:hidden;
+  background:#eee8dd;
+}
+
+.product-image img{
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+
+.product-card:hover .product-image img{
+  transform:scale(1.045);
+}
+
+.product-tag{
+  position:absolute;
+  z-index:2;
+  top:13px;
+  left:13px;
+  padding:6px 9px;
+  background:#fff;
+  color:var(--black);
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.product-tag.sale{
+  background:var(--accent);
+  color:#fff;
+}
+
+.product-info{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:17px 0 7px;
+}
+
+.product-category{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+
+.product-info h3{
+  font-size:14px;
+  font-weight:600;
+}
+
+.product-price{
+  font-size:14px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.product-old{
+  color:#aaa;
+  text-decoration:line-through;
+  font-size:11px;
+  margin-right:5px;
+}
+
+.product-view{
+  font-size:10px;
+  font-weight:700;
+  color:var(--accent);
+}
+
+/* ================= EDITORIAL ================= */
+
+.editorial{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  min-height:550px;
+  background:var(--dark);
+  color:#fff;
+}
+
+.editorial-image{
+  overflow:hidden;
+}
+
+.editorial-image img{
+  height:100%;
+  object-fit:cover;
+}
+
+.editorial-content{
+  padding:70px;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.editorial-content .eyebrow{
+  color:#d98768;
+}
+
+.editorial-content h2{
+  font-size:48px;
+  line-height:1;
+  letter-spacing:-2px;
+}
+
+.editorial-content h2 em{
+  display:block;
+  color:#d98768;
+  font-family:"Playfair Display",serif;
+}
+
+.editorial-content p{
+  max-width:430px;
+  color:#b8b1a8;
+  margin:25px 0 35px;
+  font-size:14px;
+}
+
+.outline-btn{
+  width:max-content;
+  border:1px solid #777067;
+  color:#fff;
+  padding:13px 19px;
+  font-size:11px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.outline-btn:hover{
+  border-color:#fff;
+  background:#fff;
+  color:var(--black);
+}
+
+/* ================= BENEFITS ================= */
+
+.benefits{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  padding:90px 0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--line);
+}
+
+.benefit{
+  padding:0 30px;
+  border-right:1px solid var(--line);
+}
+
+.benefit:first-child{
+  padding-left:0;
+}
+
+.benefit:last-child{
+  border-right:0;
+}
+
+.benefit span{
+  color:var(--accent);
+  font-size:10px;
+  font-weight:700;
+}
+
+.benefit h3{
+  margin:13px 0 8px;
+  font-size:15px;
+}
+
+.benefit p{
+  color:var(--muted);
+  font-size:12px;
+  max-width:220px;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  padding:100px 70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--accent);
+  color:#fff;
+}
+
+.cta .eyebrow{
+  color:#f5d4c6;
+}
+
+.cta .eyebrow::before{
+  background:#f5d4c6;
+}
+
+.cta h2{
+  font-size:55px;
+  line-height:1;
+  letter-spacing:-3px;
+}
+
+.cta h2 em{
+  font-family:"Playfair Display",serif;
+}
+
+.cta-circle{
+  width:125px;
+  height:125px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+
+.cta-circle:hover{
+  background:#fff;
+  color:var(--accent);
+  transform:rotate(-8deg);
+}
+
+.cta-circle span{
+  font-size:11px;
+  font-weight:700;
+}
+
+.cta-circle strong{
+  font-size:20px;
+}
+
+/* ================= NEWSLETTER ================= */
+
+.newsletter{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  padding:90px 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:end;
+}
+
+.newsletter h2{
+  font-size:43px;
+  line-height:1;
+  letter-spacing:-2px;
+}
+
+.newsletter h2 em{
+  color:var(--accent);
+  font-family:"Playfair Display",serif;
+}
+
+.newsletter-form label{
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+
+.newsletter-input{
+  display:flex;
+  border-bottom:1px solid var(--black);
+}
+
+.newsletter-input input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  padding:13px 0;
+  font-size:13px;
+}
+
+.newsletter-input button{
+  border:0;
+  background:none;
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.newsletter-form small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:10px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+  background:var(--black);
+  color:#fff;
+  padding:70px 0 25px;
+}
+
+.footer-main{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.6fr repeat(3,1fr);
+  gap:50px;
+}
+
+.footer-about p{
+  max-width:270px;
+  color:#99928a;
+  font-size:12px;
+  margin-top:17px;
+}
+
+.footer-links{
+  display:contents;
+}
+
+.footer-column{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.footer-column h4{
+  color:#fff;
+  font-size:10px;
+  letter-spacing:1.5px;
+  margin-bottom:8px;
+}
+
+.footer-column a{
+  color:#99928a;
+  font-size:11px;
+  transition:.2s;
+}
+
+.footer-column a:hover{
+  color:#fff;
+}
+
+.footer-bottom{
+  width:min(var(--container),calc(100% - 48px));
+  margin:60px auto 0;
+  padding-top:20px;
+  border-top:1px solid #393632;
+  display:flex;
+  justify-content:space-between;
+  color:#77716a;
+  font-size:9px;
+  letter-spacing:.5px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:2000;
+  background:var(--black);
+  color:#fff;
+  padding:14px 18px;
+  font-size:11px;
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+  .header-inner{
+    grid-template-columns:1fr auto;
+  }
+
+  .nav{
+    display:none;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .mobile-nav{
+    display:none;
+    border-top:1px solid var(--line);
+    padding:15px 24px 22px;
+  }
+
+  .mobile-nav.open{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .mobile-nav a{
+    padding:11px 0;
+    border-bottom:1px solid var(--line);
+    font-size:13px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:55px;
+  }
+
+  .hero-visual{
+    height:520px;
+  }
+
+  .category-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:300px 300px 300px;
+  }
+
+  .category-card.large{
+    grid-row:span 1;
+  }
+
+  .category-card.wide{
+    grid-column:span 2;
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .benefits{
+    grid-template-columns:1fr 1fr;
+    gap:35px 0;
+  }
+
+  .benefit:nth-child(2){
+    border-right:0;
+  }
+
+  .editorial{
+    grid-template-columns:1fr;
+  }
+
+  .editorial-image{
+    min-height:400px;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .container,
+  .header-inner,
+  .hero,
+  .section-head,
+  .category-grid,
+  .product-grid,
+  .editorial,
+  .benefits,
+  .cta,
+  .newsletter,
+  .footer-main,
+  .footer-bottom{
+    width:calc(100% - 32px);
+  }
+
+  .top-bar{
+    font-size:8px;
+    letter-spacing:1.3px;
+  }
+
+  .header-inner{
+    height:70px;
+  }
+
+  .search-btn span,
+  .cart-btn span{
+    display:none;
+  }
+
+  .logo{
+    font-size:17px;
+    letter-spacing:3px;
+  }
+
+  .hero{
+    width:calc(100% - 32px);
+    padding:50px 0 70px;
+    gap:40px;
+  }
+
+  .hero h1{
+    font-size:48px;
+    letter-spacing:-2.5px;
+  }
+
+  .hero-text{
+    font-size:13px;
+  }
+
+  .hero-buttons{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .hero-info{
+    gap:20px;
+  }
+
+  .hero-visual{
+    height:430px;
+  }
+
+  .hero-product{
+    left:12px;
+    bottom:20px;
+    width:180px;
+  }
+
+  section{
+    padding:70px 0;
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .section-title{
+    font-size:38px;
+  }
+
+  .category-grid{
+    grid-template-columns:1fr;
+    grid-template-rows:repeat(4,300px);
+  }
+
+  .category-card.large,
+  .category-card.wide{
+    grid-column:auto;
+    grid-row:auto;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  .product-info{
+    display:block;
+  }
+
+  .product-price{
+    display:block;
+    margin-top:5px;
+  }
+
+  .product-info h3{
+    font-size:12px;
+  }
+
+  .editorial-content{
+    padding:45px 28px;
+  }
+
+  .editorial-content h2{
+    font-size:38px;
+  }
+
+  .editorial-image{
+    min-height:300px;
+  }
+
+  .benefits{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .benefit{
+    padding:0;
+    border-right:0;
+    padding-bottom:30px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .benefit:last-child{
+    border-bottom:0;
+  }
+
+  .cta{
+    padding:55px 25px;
+    gap:35px;
+  }
+
+  .cta h2{
+    font-size:40px;
+    letter-spacing:-2px;
+  }
+
+  .cta-circle{
+    width:90px;
+    height:90px;
+    flex-shrink:0;
+  }
+
+  .newsletter{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .newsletter h2{
+    font-size:38px;
+  }
+
+  .footer-main{
+    grid-template-columns:1fr 1fr;
+    gap:40px 25px;
+  }
+
+  .footer-about{
+    grid-column:1 / -1;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:8px;
+  }
+
+}
+
+/* ================= ACCESSIBILITY ================= */
+
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <!-- =========================
-       TOP ANNOUNCEMENT
-  ========================== -->
-  <div class="announcement-bar">
-    <p>FREE SHIPPING ON ORDERS OVER $75</p>
+<!-- TOP BAR -->
+<div class="top-bar">
+  FREE SHIPPING ON ORDERS OVER $75
+</div>
+
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="header-inner">
+
+    <a href="#home" class="logo">
+      NEXA<span>CART</span>
+    </a>
+
+
+    <nav class="nav">
+
+      <a href="#home" class="active">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="#products">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
+    </nav>
+
+
+    <div class="header-actions">
+
+      <button class="icon-btn" id="searchBtn" aria-label="Search">
+
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="6"></circle>
+          <path d="M16 16L21 21"></path>
+        </svg>
+
+        <span>Search</span>
+
+      </button>
+
+
+      <button class="icon-btn" id="cartBtn" aria-label="Shopping cart">
+
+        <svg viewBox="0 0 24 24">
+          <path d="M3 4h2l2 12h11l2-8H7"></path>
+          <circle cx="10" cy="20" r="1"></circle>
+          <circle cx="17" cy="20" r="1"></circle>
+        </svg>
+
+        <span>Cart</span>
+
+        <b class="cart-count" id="cartCount">0</b>
+
+      </button>
+
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
   </div>
 
 
-  <!-- =========================
-       HEADER
-  ========================== -->
-  <header class="site-header">
+  <nav class="mobile-nav" id="mobileNav">
 
-    <div class="header-container">
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#products">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
 
-      <a href="index.html" class="brand" aria-label="NexaCart Home">
-        NEXA<span>CART</span>
+  </nav>
+
+</header>
+
+
+
+<main id="home">
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-content">
+
+    <p class="eyebrow">
+      THE NEW COLLECTION
+    </p>
+
+    <h1>
+      Better products.
+      <em>Better everyday.</em>
+    </h1>
+
+    <p class="hero-text">
+      Discover thoughtfully selected electronics, fashion,
+      accessories and lifestyle essentials made for modern life.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#products" class="primary-btn">
+        Shop Collection
+        <span>→</span>
       </a>
 
-      <nav class="desktop-navigation" aria-label="Main Navigation">
+      <a href="#categories" class="text-btn">
+        Explore Categories
+      </a>
 
-        <a href="index.html" class="nav-active">
-          Home
-        </a>
-
-        <a href="shop.html">
-          Shop
-        </a>
-
-        <a href="categories.html">
-          Categories
-        </a>
-
-        <a href="about.html">
-          About
-        </a>
-
-        <a href="contact.html">
-          Contact
-        </a>
-
-      </nav>
+    </div>
 
 
-      <div class="header-tools">
+    <div class="hero-info">
 
-        <a href="shop.html" class="search-button" aria-label="Search products">
+      <div>
+        <strong>01</strong>
+        <span>Curated<br>Products</span>
+      </div>
 
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="6.5"></circle>
-            <path d="M16 16L21 21"></path>
-          </svg>
+      <div>
+        <strong>02</strong>
+        <span>Simple<br>Shopping</span>
+      </div>
 
-          <span>Search</span>
+      <div>
+        <strong>03</strong>
+        <span>Modern<br>Experience</span>
+      </div>
 
-        </a>
+    </div>
 
-
-        <a href="cart.html" class="cart-button" aria-label="Shopping cart">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 5h2l1.5 10h10L20 8H7"></path>
-            <circle cx="10" cy="19" r="1"></circle>
-            <circle cx="17" cy="19" r="1"></circle>
-          </svg>
-
-          <span>Cart</span>
-
-          <b id="cartCount">0</b>
-
-        </a>
+  </div>
 
 
-        <button
-          type="button"
-          class="mobile-menu-button"
-          id="menuToggle"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
+  <div class="hero-visual">
+
+    <div class="hero-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1400&q=85"
+        alt="Classic wrist watch"
+      >
+
+    </div>
+
+
+    <div class="hero-product">
+
+      <small>FEATURED ITEM</small>
+
+      <h3>
+        Classic<br>
+        Wrist Watch
+      </h3>
+
+      <a href="#products">
+        Discover →
+      </a>
+
+    </div>
+
+
+    <div class="hero-number">
+      N<span>.</span>01
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CATEGORIES -->
+<section class="category-section" id="categories">
+
+  <div class="section-head">
+
+    <div>
+
+      <p class="eyebrow">
+        SHOP BY CATEGORY
+      </p>
+
+      <h2 class="section-title">
+        Explore our <em>world.</em>
+      </h2>
+
+    </div>
+
+    <a href="#products" class="section-link">
+      View products →
+    </a>
+
+  </div>
+
+
+  <div class="category-grid">
+
+    <a href="#products" class="category-card large">
+
+      <img
+        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=85"
+        alt="Electronics"
+        loading="lazy"
+      >
+
+      <div class="category-content">
+
+        <small>01</small>
+        <h3>Electronics</h3>
+        <span>Explore collection →</span>
+
+      </div>
+
+    </a>
+
+
+    <a href="#products" class="category-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=85"
+        alt="Fashion"
+        loading="lazy"
+      >
+
+      <div class="category-content">
+
+        <small>02</small>
+        <h3>Fashion</h3>
+        <span>Explore collection →</span>
+
+      </div>
+
+    </a>
+
+
+    <a href="#products" class="category-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85"
+        alt="Accessories"
+        loading="lazy"
+      >
+
+      <div class="category-content">
+
+        <small>03</small>
+        <h3>Accessories</h3>
+        <span>Explore collection →</span>
+
+      </div>
+
+    </a>
+
+
+    <a href="#products" class="category-card wide">
+
+      <img
+        src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85"
+        alt="Home and lifestyle"
+        loading="lazy"
+      >
+
+      <div class="category-content">
+
+        <small>04</small>
+        <h3>Home & Lifestyle</h3>
+        <span>Explore collection →</span>
+
+      </div>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+
+  <div class="section-head">
+
+    <div>
+
+      <p class="eyebrow">
+        FEATURED PRODUCTS
+      </p>
+
+      <h2 class="section-title">
+        Selected <em>for you.</em>
+      </h2>
+
+    </div>
+
+    <a href="#products" class="section-link">
+      Shop all →
+    </a>
+
+  </div>
+
+
+  <div class="product-grid">
+
+
+    <!-- PRODUCT 1 -->
+    <article class="product-card">
+
+      <a href="#products" class="product-image">
+
+        <span class="product-tag">
+          BESTSELLER
+        </span>
+
+        <img
+          src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+          alt="Wireless headphones"
+          loading="lazy"
         >
-          <span></span>
-          <span></span>
+
+      </a>
+
+
+      <div class="product-info">
+
+        <div>
+
+          <span class="product-category">
+            Electronics
+          </span>
+
+          <h3>
+            Wireless Headphones
+          </h3>
+
+        </div>
+
+        <strong class="product-price">
+          $89
+        </strong>
+
+      </div>
+
+      <a href="#products" class="product-view">
+        View product →
+      </a>
+
+    </article>
+
+
+
+    <!-- PRODUCT 2 -->
+    <article class="product-card">
+
+      <a href="#products" class="product-image">
+
+        <span class="product-tag">
+          FEATURED
+        </span>
+
+        <img
+          src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+          alt="Classic wrist watch"
+          loading="lazy"
+        >
+
+      </a>
+
+
+      <div class="product-info">
+
+        <div>
+
+          <span class="product-category">
+            Accessories
+          </span>
+
+          <h3>
+            Classic Wrist Watch
+          </h3>
+
+        </div>
+
+        <strong class="product-price">
+          $120
+        </strong>
+
+      </div>
+
+      <a href="#products" class="product-view">
+        View product →
+      </a>
+
+    </article>
+
+
+
+    <!-- PRODUCT 3 -->
+    <article class="product-card">
+
+      <a href="#products" class="product-image">
+
+        <span class="product-tag sale">
+          SALE
+        </span>
+
+        <img
+          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85"
+          alt="Urban running shoes"
+          loading="lazy"
+        >
+
+      </a>
+
+
+      <div class="product-info">
+
+        <div>
+
+          <span class="product-category">
+            Fashion
+          </span>
+
+          <h3>
+            Urban Running Shoes
+          </h3>
+
+        </div>
+
+        <strong class="product-price">
+          $74
+        </strong>
+
+      </div>
+
+      <a href="#products" class="product-view">
+        View product →
+      </a>
+
+    </article>
+
+
+
+    <!-- PRODUCT 4 -->
+    <article class="product-card">
+
+      <a href="#products" class="product-image">
+
+        <span class="product-tag">
+          NEW
+        </span>
+
+        <img
+          src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85"
+          alt="Premium leather bag"
+          loading="lazy"
+        >
+
+      </a>
+
+
+      <div class="product-info">
+
+        <div>
+
+          <span class="product-category">
+            Accessories
+          </span>
+
+          <h3>
+            Premium Leather Bag
+          </h3>
+
+        </div>
+
+        <strong class="product-price">
+          $99
+        </strong>
+
+      </div>
+
+      <a href="#products" class="product-view">
+        View product →
+      </a>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+
+<!-- EDITORIAL -->
+<section id="about">
+
+  <div class="editorial">
+
+    <div class="editorial-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85"
+        alt="NexaCart shopping experience"
+        loading="lazy"
+      >
+
+    </div>
+
+
+    <div class="editorial-content">
+
+      <p class="eyebrow">
+        THE NEXACART STANDARD
+      </p>
+
+      <h2>
+        Shopping made
+        <em>effortless.</em>
+      </h2>
+
+      <p>
+        We believe online shopping should be simple,
+        clear and enjoyable. NexaCart brings useful,
+        stylish and reliable products together in one
+        modern shopping experience.
+      </p>
+
+      <a href="#contact" class="outline-btn">
+        Learn More →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- BENEFITS -->
+<section>
+
+  <div class="benefits">
+
+    <div class="benefit">
+
+      <span>01</span>
+
+      <h3>Curated Products</h3>
+
+      <p>
+        A focused selection of useful and modern products.
+      </p>
+
+    </div>
+
+
+    <div class="benefit">
+
+      <span>02</span>
+
+      <h3>Easy Shopping</h3>
+
+      <p>
+        Simple browsing and a clear shopping experience.
+      </p>
+
+    </div>
+
+
+    <div class="benefit">
+
+      <span>03</span>
+
+      <h3>Secure Experience</h3>
+
+      <p>
+        A professional store experience built around trust.
+      </p>
+
+    </div>
+
+
+    <div class="benefit">
+
+      <span>04</span>
+
+      <h3>Everyday Value</h3>
+
+      <p>
+        Products selected for style, function and value.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CTA -->
+<section>
+
+  <div class="cta">
+
+    <div>
+
+      <p class="eyebrow">
+        START SHOPPING
+      </p>
+
+      <h2>
+        Find your next
+        <em>favorite thing.</em>
+      </h2>
+
+    </div>
+
+
+    <a href="#products" class="cta-circle">
+
+      <span>Shop</span>
+
+      <strong>↗</strong>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- NEWSLETTER -->
+<section id="contact">
+
+  <div class="newsletter">
+
+    <div>
+
+      <p class="eyebrow">
+        NEXACART UPDATES
+      </p>
+
+      <h2>
+        New products.
+        <em>Fresh inspiration.</em>
+      </h2>
+
+    </div>
+
+
+    <form id="newsletterForm">
+
+      <label for="email">
+        Email address
+      </label>
+
+      <div class="newsletter-input">
+
+        <input
+          type="email"
+          id="email"
+          placeholder="you@example.com"
+          required
+        >
+
+        <button type="submit">
+          Subscribe →
         </button>
 
       </div>
 
-    </div>
+      <small>
+        Get occasional updates about new products and collections.
+      </small>
 
+    </form>
 
-    <!-- Mobile Navigation -->
-    <nav class="mobile-navigation" id="mobileNav" aria-label="Mobile Navigation">
+  </div>
 
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop</a>
-      <a href="categories.html">Categories</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="cart.html">Cart</a>
+</section>
 
-    </nav>
+</main>
 
-  </header>
 
 
+<!-- FOOTER -->
+<footer class="footer">
 
-  <main>
+  <div class="footer-main">
 
-    <!-- =========================
-         HERO
-    ========================== -->
-    <section class="hero-section">
+    <div class="footer-about">
 
-      <div class="hero-content">
-
-        <div class="eyebrow">
-          <span></span>
-          THE NEW NEXACART EDIT
-        </div>
-
-
-        <h1>
-          Everything you need.
-          <em>Nothing you don't.</em>
-        </h1>
-
-
-        <p class="hero-description">
-          Discover carefully selected products across technology,
-          fashion, accessories and modern living — all in one place.
-        </p>
-
-
-        <div class="hero-actions">
-
-          <a href="shop.html" class="primary-button">
-            Shop Collection
-            <span>↗</span>
-          </a>
-
-          <a href="categories.html" class="secondary-link">
-            Explore Categories
-            <span>→</span>
-          </a>
-
-        </div>
-
-
-        <div class="hero-detail">
-
-          <strong>01</strong>
-
-          <p>
-            Curated products<br>
-            for everyday life
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="hero-visual">
-
-        <div class="hero-image-wrapper">
-
-          <img
-            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1400&q=85"
-            alt="Premium wrist watch"
-          >
-
-        </div>
-
-
-        <div class="hero-product-card">
-
-          <span>FEATURED ITEM</span>
-
-          <h2>
-            Classic<br>
-            Wrist Watch
-          </h2>
-
-          <a href="product.html?id=classic-wrist-watch">
-            View product →
-          </a>
-
-        </div>
-
-
-        <div class="hero-number">
-          N<span>.</span>01
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         INTRO STATEMENT
-    ========================== -->
-    <section class="intro-section">
-
-      <div class="intro-label">
-        OUR APPROACH
-      </div>
-
-
-      <div class="intro-content">
-
-        <h2>
-          Shopping should feel
-          <em>simple.</em>
-        </h2>
-
-        <p>
-          NexaCart brings useful, stylish and reliable products
-          together in a thoughtfully designed shopping experience.
-          Less searching. Less clutter. Better choices.
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         CATEGORIES
-    ========================== -->
-    <section class="category-section">
-
-      <div class="section-header">
-
-        <div>
-
-          <span class="section-label">
-            SHOP BY CATEGORY
-          </span>
-
-          <h2>
-            Find what fits
-            <em>your world.</em>
-          </h2>
-
-        </div>
-
-
-        <a href="categories.html" class="view-all-link">
-          View all categories →
-        </a>
-
-      </div>
-
-
-
-      <div class="category-grid">
-
-        <!-- Electronics -->
-        <a
-          href="shop.html?category=electronics"
-          class="category-card category-electronics"
-        >
-
-          <img
-            src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=85"
-            alt="Modern electronics"
-            loading="lazy"
-          >
-
-          <div class="category-overlay">
-
-            <span>01</span>
-
-            <div>
-              <h3>Electronics</h3>
-              <p>Smart technology →</p>
-            </div>
-
-          </div>
-
-        </a>
-
-
-        <!-- Fashion -->
-        <a
-          href="shop.html?category=fashion"
-          class="category-card"
-        >
-
-          <img
-            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=85"
-            alt="Modern fashion"
-            loading="lazy"
-          >
-
-          <div class="category-overlay">
-
-            <span>02</span>
-
-            <div>
-              <h3>Fashion</h3>
-              <p>Everyday style →</p>
-            </div>
-
-          </div>
-
-        </a>
-
-
-        <!-- Accessories -->
-        <a
-          href="shop.html?category=accessories"
-          class="category-card"
-        >
-
-          <img
-            src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85"
-            alt="Premium accessories"
-            loading="lazy"
-          >
-
-          <div class="category-overlay">
-
-            <span>03</span>
-
-            <div>
-              <h3>Accessories</h3>
-              <p>Complete your look →</p>
-            </div>
-
-          </div>
-
-        </a>
-
-
-        <!-- Home -->
-        <a
-          href="shop.html?category=home"
-          class="category-card category-home"
-        >
-
-          <img
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85"
-            alt="Modern home lifestyle"
-            loading="lazy"
-          >
-
-          <div class="category-overlay">
-
-            <span>04</span>
-
-            <div>
-              <h3>Home & Lifestyle</h3>
-              <p>Make your space yours →</p>
-            </div>
-
-          </div>
-
-        </a>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         FEATURED PRODUCTS
-    ========================== -->
-    <section class="featured-section">
-
-      <div class="section-header">
-
-        <div>
-
-          <span class="section-label">
-            FEATURED PRODUCTS
-          </span>
-
-          <h2>
-            This week's
-            <em>selection.</em>
-          </h2>
-
-        </div>
-
-
-        <a href="shop.html" class="view-all-link">
-          Shop all products →
-        </a>
-
-      </div>
-
-
-
-      <div class="featured-grid">
-
-        <!-- Product 01 -->
-        <article class="product-card">
-
-          <a
-            href="product.html?id=wireless-headphones"
-            class="product-image"
-          >
-
-            <span class="product-badge">
-              BESTSELLER
-            </span>
-
-            <img
-              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
-              alt="Wireless headphones"
-              loading="lazy"
-            >
-
-          </a>
-
-
-          <div class="product-information">
-
-            <div>
-
-              <span class="product-category">
-                ELECTRONICS
-              </span>
-
-              <h3>
-                <a href="product.html?id=wireless-headphones">
-                  Wireless Headphones
-                </a>
-              </h3>
-
-            </div>
-
-            <strong>$89</strong>
-
-          </div>
-
-
-          <a
-            href="product.html?id=wireless-headphones"
-            class="product-link"
-          >
-            View product <span>↗</span>
-          </a>
-
-        </article>
-
-
-
-        <!-- Product 02 -->
-        <article class="product-card">
-
-          <a
-            href="product.html?id=classic-wrist-watch"
-            class="product-image"
-          >
-
-            <span class="product-badge">
-              FEATURED
-            </span>
-
-            <img
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
-              alt="Classic wrist watch"
-              loading="lazy"
-            >
-
-          </a>
-
-
-          <div class="product-information">
-
-            <div>
-
-              <span class="product-category">
-                ACCESSORIES
-              </span>
-
-              <h3>
-                <a href="product.html?id=classic-wrist-watch">
-                  Classic Wrist Watch
-                </a>
-              </h3>
-
-            </div>
-
-            <strong>$120</strong>
-
-          </div>
-
-
-          <a
-            href="product.html?id=classic-wrist-watch"
-            class="product-link"
-          >
-            View product <span>↗</span>
-          </a>
-
-        </article>
-
-
-
-        <!-- Product 03 -->
-        <article class="product-card">
-
-          <a
-            href="product.html?id=urban-running-shoes"
-            class="product-image"
-          >
-
-            <span class="product-badge sale-badge">
-              SALE
-            </span>
-
-            <img
-              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85"
-              alt="Urban running shoes"
-              loading="lazy"
-            >
-
-          </a>
-
-
-          <div class="product-information">
-
-            <div>
-
-              <span class="product-category">
-                FASHION
-              </span>
-
-              <h3>
-                <a href="product.html?id=urban-running-shoes">
-                  Urban Running Shoes
-                </a>
-              </h3>
-
-            </div>
-
-            <strong>$74</strong>
-
-          </div>
-
-
-          <a
-            href="product.html?id=urban-running-shoes"
-            class="product-link"
-          >
-            View product <span>↗</span>
-          </a>
-
-        </article>
-
-
-
-        <!-- Product 04 -->
-        <article class="product-card">
-
-          <a
-            href="product.html?id=premium-leather-bag"
-            class="product-image"
-          >
-
-            <span class="product-badge">
-              NEW
-            </span>
-
-            <img
-              src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85"
-              alt="Premium leather bag"
-              loading="lazy"
-            >
-
-          </a>
-
-
-          <div class="product-information">
-
-            <div>
-
-              <span class="product-category">
-                ACCESSORIES
-              </span>
-
-              <h3>
-                <a href="product.html?id=premium-leather-bag">
-                  Premium Leather Bag
-                </a>
-              </h3>
-
-            </div>
-
-            <strong>$99</strong>
-
-          </div>
-
-
-          <a
-            href="product.html?id=premium-leather-bag"
-            class="product-link"
-          >
-            View product <span>↗</span>
-          </a>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         EDITORIAL SECTION
-    ========================== -->
-    <section class="editorial-section">
-
-      <div class="editorial-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85"
-          alt="Modern shopping experience"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <div class="editorial-content">
-
-        <span class="section-label">
-          THE NEXACART STANDARD
-        </span>
-
-        <h2>
-          Good products.
-          <em>Clear choices.</em>
-        </h2>
-
-        <p>
-          We focus on products that combine usefulness,
-          design and everyday value — so finding something
-          worth buying feels effortless.
-        </p>
-
-        <a href="about.html" class="outline-button">
-          Discover NexaCart
-          <span>↗</span>
-        </a>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         VALUES
-    ========================== -->
-    <section class="values-section">
-
-      <div class="values-heading">
-
-        <span class="section-label">
-          WHY NEXACART
-        </span>
-
-        <h2>
-          Built around
-          <em>better shopping.</em>
-        </h2>
-
-      </div>
-
-
-      <div class="value-item">
-
-        <span>01</span>
-
-        <h3>Curated</h3>
-
-        <p>
-          A focused selection instead of endless
-          products you don't need.
-        </p>
-
-      </div>
-
-
-      <div class="value-item">
-
-        <span>02</span>
-
-        <h3>Simple</h3>
-
-        <p>
-          Clear navigation and a straightforward
-          shopping experience from start to finish.
-        </p>
-
-      </div>
-
-
-      <div class="value-item">
-
-        <span>03</span>
-
-        <h3>Modern</h3>
-
-        <p>
-          A polished digital experience designed
-          for today's connected shopper.
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         FINAL CTA
-    ========================== -->
-    <section class="final-cta">
-
-      <div>
-
-        <span class="section-label light-label">
-          START EXPLORING
-        </span>
-
-        <h2>
-          Find something
-          <em>worth having.</em>
-        </h2>
-
-      </div>
-
-
-      <a href="shop.html" class="round-cta">
-
-        <span>Shop</span>
-
-        <strong>↗</strong>
-
+      <a href="#home" class="logo">
+        NEXA<span>CART</span>
       </a>
 
-    </section>
-
-
-
-    <!-- =========================
-         NEWSLETTER
-    ========================== -->
-    <section class="newsletter-section">
-
-      <div class="newsletter-heading">
-
-        <span class="section-label">
-          NEXACART JOURNAL
-        </span>
-
-        <h2>
-          Fresh finds.
-          <em>No noise.</em>
-        </h2>
-
-      </div>
-
-
-      <form id="newsletterForm" class="newsletter-form">
-
-        <label for="newsletterEmail">
-          Email address
-        </label>
-
-
-        <div class="newsletter-input">
-
-          <input
-            type="email"
-            id="newsletterEmail"
-            name="email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            required
-          >
-
-          <button type="submit">
-            Subscribe →
-          </button>
-
-        </div>
-
-
-        <small>
-          Get occasional updates about new products and collections.
-        </small>
-
-      </form>
-
-    </section>
-
-  </main>
-
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-  <footer class="site-footer">
-
-    <div class="footer-grid">
-
-      <div class="footer-brand">
-
-        <a href="index.html" class="brand">
-          NEXA<span>CART</span>
-        </a>
-
-        <p>
-          Modern shopping for everyday living.
-          Carefully selected products, simply presented.
-        </p>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h3>Shop</h3>
-
-        <a href="shop.html">All Products</a>
-        <a href="categories.html">Categories</a>
-        <a href="cart.html">Cart</a>
-        <a href="checkout.html">Checkout</a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h3>Company</h3>
-
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms & Conditions</a>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h3>Categories</h3>
-
-        <a href="shop.html?category=electronics">
-          Electronics
-        </a>
-
-        <a href="shop.html?category=fashion">
-          Fashion
-        </a>
-
-        <a href="shop.html?category=accessories">
-          Accessories
-        </a>
-
-        <a href="shop.html?category=home">
-          Home & Lifestyle
-        </a>
-
-      </div>
+      <p>
+        Modern shopping for everyday living.
+        Carefully selected products, simply presented.
+      </p>
 
     </div>
 
 
-    <div class="footer-bottom">
+    <div class="footer-column">
 
-      <span>
-        © 2026 NexaCart. All rights reserved.
-      </span>
+      <h4>SHOP</h4>
 
-      <span>
-        Modern commerce, thoughtfully designed.
-      </span>
+      <a href="#products">All Products</a>
+      <a href="#categories">Categories</a>
+      <a href="#products">Featured</a>
+      <a href="#products">New Arrivals</a>
 
     </div>
 
-  </footer>
+
+    <div class="footer-column">
+
+      <h4>COMPANY</h4>
+
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+      <h4>CATEGORIES</h4>
+
+      <a href="#products">Electronics</a>
+      <a href="#products">Fashion</a>
+      <a href="#products">Accessories</a>
+      <a href="#products">Home & Lifestyle</a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 NexaCart. All rights reserved.
+    </span>
+
+    <span>
+      Modern commerce, thoughtfully designed.
+    </span>
+
+  </div>
+
+</footer>
 
 
 
-  <!-- Shared JavaScript -->
-  <script src="script.js"></script>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+
+<script>
+
+/* =========================================================
+   NEXACART JAVASCRIPT
+========================================================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileNav = document.getElementById("mobileNav");
+const cartCount = document.getElementById("cartCount");
+const cartBtn = document.getElementById("cartBtn");
+const searchBtn = document.getElementById("searchBtn");
+const newsletterForm = document.getElementById("newsletterForm");
+const toast = document.getElementById("toast");
+
+
+/* Mobile Menu */
+
+menuBtn.addEventListener("click", () => {
+
+  mobileNav.classList.toggle("open");
+
+});
+
+
+document.querySelectorAll(".mobile-nav a").forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    mobileNav.classList.remove("open");
+
+  });
+
+});
+
+
+/* Cart */
+
+let cart = JSON.parse(localStorage.getItem("nexacartCart")) || [];
+
+function updateCartCount(){
+
+  cartCount.textContent = cart.length;
+
+}
+
+updateCartCount();
+
+
+cartBtn.addEventListener("click", () => {
+
+  showToast(
+    cart.length
+      ? `You have ${cart.length} item${cart.length > 1 ? "s" : ""} in your cart.`
+      : "Your cart is currently empty."
+  );
+
+});
+
+
+/* Search */
+
+searchBtn.addEventListener("click", () => {
+
+  document.getElementById("products").scrollIntoView({
+    behavior:"smooth"
+  });
+
+  showToast("Product search will be available in the Shop page.");
+
+});
+
+
+/* Newsletter */
+
+newsletterForm.addEventListener("submit", event => {
+
+  event.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+
+  if(!email) return;
+
+  showToast("Thank you for subscribing to NexaCart.");
+
+  newsletterForm.reset();
+
+});
+
+
+/* Toast */
+
+function showToast(message){
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+
+    toast.classList.remove("show");
+
+  },3000);
+
+}
+
+</script>
 
 </body>
   </html>
