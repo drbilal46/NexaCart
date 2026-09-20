@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Us — NexaCart</title>
+  <meta name="description" content="Get in touch with NexaCart. Send us your questions, feedback, or support request.">
+
+  <style>
+    :root {
+      --charcoal: #20201e;
+      --charcoal-soft: #2b2a27;
+      --cream: #f7f2e8;
+      --cream-dark: #ebe3d4;
+      --terracotta: #b95f3f;
+      --terracotta-dark: #974a31;
+      --text: #262522;
+      --muted: #77736b;
+      --white: #ffffff;
+      --border: #ddd5c7;
+      --shadow: 0 18px 45px rgba(32, 32, 30, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: rgba(247, 242, 232, 0.96);
+      border-bottom: 1px solid rgba(32, 32, 30, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--charcoal);
+    }
+
+    .logo span {
+      color: var(--terracotta);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #57534c;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--charcoal);
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -9px;
+      height: 2px;
+      background: var(--terracotta);
+      border-radius: 5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: var(--charcoal);
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: var(--charcoal);
+      color: var(--white);
+      border-color: var(--charcoal);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -2px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      background: var(--terracotta);
+      color: white;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .contact-hero {
+      padding: 95px 0 75px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(185, 95, 63, 0.08), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(32, 32, 30, 0.05), transparent 30%);
+    }
+
+    .eyebrow {
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .contact-hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      max-width: 800px;
+      margin: 0 auto 22px;
+    }
+
+    .contact-hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* =========================
+       CONTACT AREA
+    ========================= */
+
+    .contact-section {
+      padding: 20px 0 100px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .contact-info,
+    .contact-form {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info {
+      padding: 42px;
+      background: var(--charcoal);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-info h2 {
+      font-size: 31px;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+    }
+
+    .contact-info > p {
+      color: #c7c3bb;
+      margin-bottom: 38px;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.09);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .info-item h3 {
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .info-item p,
+    .info-item a {
+      color: #bdb9b0;
+      font-size: 13px;
+    }
+
+    .info-item a:hover {
+      color: white;
+    }
+
+    .contact-note {
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: #aaa69d;
+      font-size: 12px;
+    }
+
+    .contact-form {
+      padding: 42px;
+    }
+
+    .contact-form h2 {
+      font-size: 30px;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .form-intro {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fcfaf6;
+      color: var(--text);
+      border-radius: 11px;
+      padding: 13px 14px;
+      outline: none;
+      transition: 0.25s ease;
+    }
+
+    input,
+    select {
+      height: 48px;
+    }
+
+    textarea {
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(185, 95, 63, 0.09);
+    }
+
+    .submit-btn {
+      margin-top: 24px;
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 11px;
+      background: var(--terracotta);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .submit-btn:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-1px);
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 10px;
+      background: #edf5ed;
+      color: #37633a;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       FAQ STRIP
+    ========================= */
+
+    .help-section {
+      padding: 0 0 100px;
+    }
+
+    .help-heading {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .help-heading h2 {
+      font-size: 35px;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .help-heading p {
+      color: var(--muted);
+    }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .help-card {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 27px;
+    }
+
+    .help-card span {
+      display: inline-block;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .help-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .help-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--charcoal);
+      color: white;
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 45px;
+    }
+
+    .footer-brand .logo {
+      color: white;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand p {
+      color: #aaa69d;
+      max-width: 320px;
+      font-size: 13px;
+    }
+
+    .footer-col h3 {
+      font-size: 13px;
+      margin-bottom: 18px;
+      color: white;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      color: #aaa69d;
+      font-size: 13px;
+      transition: 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #89857d;
+      font-size: 12px;
+    }
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 120px);
+      background: var(--charcoal);
+      color: white;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: 0.3s ease;
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 20px;
+        right: 20px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a.active::after {
+        display: none;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .help-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .nav-actions {
+        gap: 6px;
+      }
+
+      .icon-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      .contact-hero {
+        padding: 70px 0 55px;
+      }
+
+      .contact-hero h1 {
+        letter-spacing: -2px;
+        font-size: 43px;
+      }
+
+      .contact-hero p {
+        font-size: 15px;
+      }
+
+      .contact-section,
+      .help-section {
+        padding-bottom: 65px;
+      }
+
+      .contact-info,
+      .contact-form {
+        padding: 28px 22px;
+        border-radius: 15px;
+      }
+
+      .contact-info h2,
+      .contact-form h2 {
+        font-size: 26px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+
+      <a href="index.html" class="logo">
+        Nexa<span>Cart</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+
+        <button class="icon-btn" onclick="goToShop()" aria-label="Search">
+          🔍
+        </button>
+
+        <button class="icon-btn" onclick="goToCart()" aria-label="Cart">
+          🛒
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <button class="icon-btn menu-btn" onclick="toggleMenu()" aria-label="Menu">
+          ☰
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="contact-hero">
+      <div class="container">
+        <div class="eyebrow">Get in touch</div>
+
+        <h1>We'd love to hear from you.</h1>
+
+        <p>
+          Have a question, suggestion, or need help with something?
+          Send us a message and we'll be happy to help.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+      <div class="container">
+
+        <div class="contact-grid">
+
+          <!-- INFO -->
+          <div class="contact-info">
+
+            <div>
+              <h2>Let's talk.</h2>
+
+              <p>
+                Whether you have a question about our products or simply
+                want to share feedback, we're here for you.
+              </p>
+
+              <div class="info-list">
+
+                <div class="info-item">
+                  <div class="info-icon">✉</div>
+
+                  <div>
+                    <h3>Email</h3>
+                    <a href="mailto:hello@nexacart.com">
+                      hello@nexacart.com
+                    </a>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">◷</div>
+
+                  <div>
+                    <h3>Support Hours</h3>
+                    <p>Monday – Friday</p>
+                    <p>9:00 AM – 6:00 PM</p>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">⌂</div>
+
+                  <div>
+                    <h3>Online Store</h3>
+                    <p>Serving customers worldwide</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="contact-note">
+              NexaCart is a portfolio e-commerce experience.
+              Contact and support features can be connected to a real
+              backend when the store goes live.
+            </div>
+
+          </div>
+
+
+          <!-- FORM -->
+          <div class="contact-form">
+
+            <h2>Send us a message</h2>
+
+            <p class="form-intro">
+              Fill out the form below and we'll get back to you.
+            </p>
+
+            <form id="contactForm">
+
+              <div class="form-grid">
+
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+
+                  <select id="subject" name="subject" required>
+                    <option value="">Select a subject</option>
+                    <option value="order">Order Question</option>
+                    <option value="product">Product Question</option>
+                    <option value="support">Customer Support</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone (Optional)</label>
+
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+92 300 0000000"
+                  >
+                </div>
+
+                <div class="form-group full">
+                  <label for="message">Message</label>
+
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Write your message here..."
+                    required
+                  ></textarea>
+                </div>
+
+              </div>
+
+              <button type="submit" class="submit-btn">
+                Send Message
+              </button>
+
+              <div class="form-message" id="formMessage">
+                Your message has been received. Thank you for contacting NexaCart.
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- HELP -->
+    <section class="help-section">
+      <div class="container">
+
+        <div class="help-heading">
+          <div class="eyebrow">Need quick help?</div>
+          <h2>Before you reach out</h2>
+          <p>Here are a few common things customers ask about.</p>
+        </div>
+
+        <div class="help-grid">
+
+          <div class="help-card">
+            <span>📦</span>
+            <h3>Order Questions</h3>
+            <p>
+              Need help understanding an order or checking your
+              purchase details? Contact our support team.
+            </p>
+          </div>
+
+          <div class="help-card">
+            <span>🛍</span>
+            <h3>Product Information</h3>
+            <p>
+              Looking for product specifications, pricing, or
+              availability? We're happy to help.
+            </p>
+          </div>
+
+          <div class="help-card">
+            <span>💬</span>
+            <h3>Feedback</h3>
+            <p>
+              Your feedback helps us improve the NexaCart shopping
+              experience.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            Nexa<span>Cart</span>
+          </a>
+
+          <p>
+            A modern e-commerce experience built around thoughtful
+            products, simple shopping, and clean design.
+          </p>
+        </div>
+
+
+        <div class="footer-col">
+          <h3>Shop</h3>
+
+          <ul>
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+          </ul>
+        </div>
+
+
+        <div class="footer-col">
+          <h3>Company</h3>
+
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
+
+
+        <div class="footer-col">
+          <h3>Categories</h3>
+
+          <ul>
+            <li>
+              <a href="shop.html?category=electronics">
+                Electronics
+              </a>
+            </li>
+
+            <li>
+              <a href="shop.html?category=fashion">
+                Fashion
+              </a>
+            </li>
+
+            <li>
+              <a href="shop.html?category=accessories">
+                Accessories
+              </a>
+            </li>
+
+            <li>
+              <a href="shop.html?category=home">
+                Home & Lifestyle
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+        <div>© 2026 NexaCart. All rights reserved.</div>
+        <div>Designed for a modern shopping experience.</div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+
+  <script>
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("open");
+    }
+
+    function goToShop() {
+      window.location.href = "shop.html";
+    }
+
+    function goToCart() {
+      window.location.href = "cart.html";
+    }
+
+
+    /* =========================
+       CART COUNT
+    ========================= */
+
+    function updateCartCount() {
+      const countElement = document.getElementById("cartCount");
+
+      try {
+        const cart = JSON.parse(
+          localStorage.getItem("nexacartCart") || "[]"
+        );
+
+        const totalItems = Array.isArray(cart)
+          ? cart.reduce((total, item) => {
+              return total + Number(item.quantity || item.qty || 1);
+            }, 0)
+          : 0;
+
+        countElement.textContent = totalItems;
+        countElement.style.display =
+          totalItems > 0 ? "flex" : "none";
+
+      } catch (error) {
+        countElement.textContent = "0";
+        countElement.style.display = "none";
+      }
+    }
+
+
+    /* =========================
+       CONTACT FORM
+    ========================= */
+
+    document
+      .getElementById("contactForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name = document
+          .getElementById("name")
+          .value
+          .trim();
+
+        const message = document
+          .getElementById("message")
+          .value
+          .trim();
+
+        if (!name || !message) {
+          return;
+        }
+
+        const formMessage =
+          document.getElementById("formMessage");
+
+        formMessage.style.display = "block";
+
+        this.reset();
+
+        showToast("Message sent successfully.");
+
+        setTimeout(() => {
+          formMessage.style.display = "none";
+        }, 5000);
+      });
+
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2500);
+    }
+
+
+    /* =========================
+       CLOSE MOBILE MENU
+    ========================= */
+
+    document.addEventListener("click", function(event) {
+      const nav = document.getElementById("navLinks");
+      const menuButton = document.querySelector(".menu-btn");
+
+      if (
+        nav.classList.contains("open") &&
+        !nav.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        nav.classList.remove("open");
+      }
+    });
+
+
+    /* =========================
+       INITIALIZE
+    ========================= */
+
+    updateCartCount();
+
+    window.addEventListener("storage", updateCartCount);
+  </script>
+
+</body>
+        </html>
