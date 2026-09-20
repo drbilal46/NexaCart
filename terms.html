@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Terms & Conditions — NexaCart</title>
+  <meta name="description" content="Read the NexaCart Terms and Conditions for using our website and e-commerce experience.">
+
+  <style>
+    :root {
+      --charcoal: #20201e;
+      --cream: #f7f2e8;
+      --cream-dark: #ebe3d4;
+      --terracotta: #b95f3f;
+      --terracotta-dark: #974a31;
+      --text: #262522;
+      --muted: #77736b;
+      --white: #ffffff;
+      --border: #ddd5c7;
+      --shadow: 0 18px 45px rgba(32, 32, 30, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: rgba(247, 242, 232, 0.96);
+      border-bottom: 1px solid rgba(32, 32, 30, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--charcoal);
+    }
+
+    .logo span {
+      color: var(--terracotta);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #57534c;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--charcoal);
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -9px;
+      height: 2px;
+      background: var(--terracotta);
+      border-radius: 5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: var(--charcoal);
+      transition: 0.25s ease;
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: var(--charcoal);
+      color: var(--white);
+      border-color: var(--charcoal);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -2px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      background: var(--terracotta);
+      color: white;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .terms-hero {
+      padding: 90px 0 70px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 15% 25%,
+          rgba(185, 95, 63, 0.09),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 75%,
+          rgba(32, 32, 30, 0.05),
+          transparent 30%
+        );
+    }
+
+    .eyebrow {
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .terms-hero h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      margin-bottom: 18px;
+    }
+
+    .terms-hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .terms-section {
+      padding: 20px 0 100px;
+    }
+
+    .terms-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .terms-nav {
+      background: var(--charcoal);
+      color: white;
+      border-radius: 16px;
+      padding: 25px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .terms-nav h3 {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .terms-nav a {
+      display: block;
+      color: #aaa69d;
+      font-size: 12px;
+      padding: 7px 0;
+      transition: 0.2s ease;
+    }
+
+    .terms-nav a:hover {
+      color: white;
+    }
+
+    .terms-content {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 45px;
+      box-shadow: var(--shadow);
+    }
+
+    .last-updated {
+      display: inline-block;
+      padding: 7px 12px;
+      background: var(--cream);
+      border-radius: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 30px;
+    }
+
+    .notice {
+      background: var(--cream-dark);
+      border-left: 3px solid var(--terracotta);
+      padding: 18px 20px;
+      border-radius: 8px;
+      margin-bottom: 35px;
+    }
+
+    .notice p {
+      margin: 0;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .terms-content section {
+      scroll-margin-top: 110px;
+      margin-bottom: 38px;
+    }
+
+    .terms-content section:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-content h2 {
+      font-size: 24px;
+      letter-spacing: -0.6px;
+      margin-bottom: 12px;
+    }
+
+    .terms-content p {
+      color: #5f5b54;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .terms-content ul {
+      padding-left: 20px;
+      margin: 10px 0;
+      color: #5f5b54;
+      font-size: 14px;
+    }
+
+    .terms-content li {
+      margin-bottom: 7px;
+    }
+
+    .inline-link {
+      color: var(--terracotta);
+      font-weight: 700;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--charcoal);
+      color: white;
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 45px;
+    }
+
+    .footer-brand .logo {
+      color: white;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .footer-brand p {
+      color: #aaa69d;
+      max-width: 320px;
+      font-size: 13px;
+    }
+
+    .footer-col h3 {
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      color: #aaa69d;
+      font-size: 13px;
+      transition: 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #89857d;
+      font-size: 12px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 20px;
+        right: 20px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a.active::after {
+        display: none;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .terms-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .terms-nav {
+        position: static;
+      }
+
+      .terms-nav a {
+        display: inline-block;
+        margin-right: 18px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .icon-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      .terms-hero {
+        padding: 65px 0 50px;
+      }
+
+      .terms-hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
+      }
+
+      .terms-content {
+        padding: 28px 22px;
+      }
+
+      .terms-content h2 {
+        font-size: 22px;
+      }
+
+      .terms-nav {
+        padding: 20px;
+      }
+
+      .terms-nav a {
+        display: block;
+        margin-right: 0;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+
+      <a href="index.html" class="logo">
+        Nexa<span>Cart</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+
+          <li>
+            <a href="categories.html">Categories</a>
+          </li>
+
+          <li>
+            <a href="shop.html">Shop</a>
+          </li>
+
+          <li>
+            <a href="about.html">About</a>
+          </li>
+
+          <li>
+            <a href="contact.html">Contact</a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+
+        <button
+          class="icon-btn"
+          onclick="goToShop()"
+          aria-label="Search"
+        >
+          🔍
+        </button>
+
+        <button
+          class="icon-btn"
+          onclick="goToCart()"
+          aria-label="Cart"
+        >
+          🛒
+
+          <span
+            class="cart-count"
+            id="cartCount"
+          >
+            0
+          </span>
+        </button>
+
+        <button
+          class="icon-btn menu-btn"
+          onclick="toggleMenu()"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="terms-hero">
+
+      <div class="container">
+
+        <div class="eyebrow">
+          Please read carefully
+        </div>
+
+        <h1>
+          Terms & Conditions
+        </h1>
+
+        <p>
+          These terms describe the general rules for using the
+          NexaCart website and its e-commerce experience.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- TERMS -->
+    <section class="terms-section">
+
+      <div class="container">
+
+        <div class="terms-layout">
+
+          <!-- QUICK NAVIGATION -->
+          <aside class="terms-nav">
+
+            <h3>
+              On this page
+            </h3>
+
+            <a href="#acceptance">
+              Acceptance
+            </a>
+
+            <a href="#website">
+              Website Use
+            </a>
+
+            <a href="#products">
+              Products & Pricing
+            </a>
+
+            <a href="#orders">
+              Orders
+            </a>
+
+            <a href="#payments">
+              Payments
+            </a>
+
+            <a href="#intellectual">
+              Intellectual Property
+            </a>
+
+            <a href="#availability">
+              Availability
+            </a>
+
+            <a href="#liability">
+              Liability
+            </a>
+
+            <a href="#changes">
+              Changes
+            </a>
+
+            <a href="#contact">
+              Contact
+            </a>
+
+          </aside>
+
+
+          <!-- CONTENT -->
+          <article class="terms-content">
+
+            <div class="last-updated">
+              Last updated: September 2026
+            </div>
+
+
+            <div class="notice">
+
+              <p>
+                NexaCart is currently presented as a front-end
+                e-commerce portfolio experience. Checkout and order
+                features shown on the website are demonstrations and
+                are not connected to a live payment processor.
+              </p>
+
+            </div>
+
+
+            <section id="acceptance">
+
+              <h2>
+                1. Acceptance of Terms
+              </h2>
+
+              <p>
+                By accessing or using the NexaCart website, you agree
+                to follow these Terms & Conditions and any applicable
+                laws and regulations.
+              </p>
+
+              <p>
+                If you do not agree with these terms, please do not
+                use the website.
+              </p>
+
+            </section>
+
+
+            <section id="website">
+
+              <h2>
+                2. Website Use
+              </h2>
+
+              <p>
+                NexaCart is intended to provide an online shopping
+                experience and demonstrate common e-commerce features.
+              </p>
+
+              <p>
+                You agree not to misuse the website, attempt to damage
+                its functionality, interfere with its operation, or
+                use it for unlawful purposes.
+              </p>
+
+            </section>
+
+
+            <section id="products">
+
+              <h2>
+                3. Products & Pricing
+              </h2>
+
+              <p>
+                Product names, descriptions, images, prices, ratings,
+                and other information displayed on NexaCart may be
+                demonstration content.
+              </p>
+
+              <p>
+                Prices and product information should not be considered
+                a binding commercial offer unless the website is
+                connected to a live store and explicitly states otherwise.
+              </p>
+
+            </section>
+
+
+            <section id="orders">
+
+              <h2>
+                4. Orders
+              </h2>
+
+              <p>
+                The cart and checkout system may simulate the process
+                of creating an order for demonstration purposes.
+              </p>
+
+              <p>
+                A successful checkout on the current portfolio version
+                does not necessarily represent a real purchase,
+                shipment, or legally binding transaction.
+              </p>
+
+            </section>
+
+
+            <section id="payments">
+
+              <h2>
+                5. Payments
+              </h2>
+
+              <p>
+                The current NexaCart portfolio experience does not
+                process real online payments.
+              </p>
+
+              <p>
+                Payment methods displayed during checkout are part of
+                the front-end demonstration. A production version
+                would require a secure payment provider and appropriate
+                server-side processing.
+              </p>
+
+            </section>
+
+
+            <section id="intellectual">
+
+              <h2>
+                6. Intellectual Property
+              </h2>
+
+              <p>
+                The NexaCart brand, website structure, original interface
+                design, written content, and code may be protected by
+                applicable intellectual property laws.
+              </p>
+
+              <p>
+                Website content should not be copied, reproduced,
+                redistributed, or commercially reused without appropriate
+                permission where required.
+              </p>
+
+            </section>
+
+
+            <section id="availability">
+
+              <h2>
+                7. Website Availability
+              </h2>
+
+              <p>
+                We aim to keep the website accessible and functional,
+                but continuous availability cannot be guaranteed.
+              </p>
+
+              <p>
+                Website features may occasionally be changed, updated,
+                temporarily unavailable, or removed.
+              </p>
+
+            </section>
+
+
+            <section id="liability">
+
+              <h2>
+                8. Limitation of Liability
+              </h2>
+
+              <p>
+                To the extent permitted by applicable law, NexaCart
+                should not be considered responsible for losses arising
+                from reliance on demonstration content or temporary
+                website interruptions.
+              </p>
+
+              <p>
+                This section is intended for the current portfolio
+                version. A live commercial store should use terms
+                prepared for its actual business operations and applicable
+                jurisdiction.
+              </p>
+
+            </section>
+
+
+            <section id="changes">
+
+              <h2>
+                9. Changes to These Terms
+              </h2>
+
+              <p>
+                These Terms & Conditions may be updated as NexaCart
+                features, services, integrations, or business operations
+                change.
+              </p>
+
+              <p>
+                The latest version will be published on this page.
+              </p>
+
+            </section>
+
+
+            <section id="contact">
+
+              <h2>
+                10. Contact
+              </h2>
+
+              <p>
+                If you have questions about these Terms & Conditions,
+                please contact NexaCart through the Contact page.
+              </p>
+
+              <p>
+                <a
+                  href="contact.html"
+                  class="inline-link"
+                >
+                  Go to Contact →
+                </a>
+              </p>
+
+            </section>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <a href="index.html" class="logo">
+            Nexa<span>Cart</span>
+          </a>
+
+          <p>
+            A modern e-commerce experience built around thoughtful
+            products, simple shopping, and clean design.
+          </p>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h3>
+            Shop
+          </h3>
+
+          <ul>
+
+            <li>
+              <a href="shop.html">
+                All Products
+              </a>
+            </li>
+
+            <li>
+              <a href="categories.html">
+                Categories
+              </a>
+            </li>
+
+            <li>
+              <a href="cart.html">
+                Cart
+              </a>
+            </li>
+
+            <li>
+              <a href="checkout.html">
+                Checkout
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h3>
+            Company
+          </h3>
+
+          <ul>
+
+            <li>
+              <a href="about.html">
+                About
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact
+              </a>
+            </li>
+
+            <li>
+              <a href="privacy.html">
+                Privacy
+              </a>
+            </li>
+
+            <li>
+              <a href="terms.html">
+                Terms
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="footer-col">
+
+          <h3>
+            Categories
+          </h3>
+
+          <ul>
+
+            <li>
+              <a href="shop.html?category=electronics">
+                Electronics
+              </a>
+            </li>
+
+            <li>
+              <a href="shop.html?category=fashion">
+                Fashion
+              </a>
+            </li>
+
+            <li>
+              <a href="shop.html?category=accessories">
+                Accessories
+              </a>
+            </li>
+
+            <li>
+              <a href="shop.html?category=home">
+                Home & Lifestyle
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <div>
+          © 2026 NexaCart. All rights reserved.
+        </div>
+
+        <div>
+          Designed for a modern shopping experience.
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("open");
+    }
+
+    function goToShop() {
+      window.location.href = "shop.html";
+    }
+
+    function goToCart() {
+      window.location.href = "cart.html";
+    }
+
+
+    /* =========================
+       CART COUNT
+    ========================= */
+
+    function updateCartCount() {
+
+      const countElement =
+        document.getElementById("cartCount");
+
+      try {
+
+        const cart = JSON.parse(
+          localStorage.getItem("nexacartCart") || "[]"
+        );
+
+        const totalItems =
+          Array.isArray(cart)
+            ? cart.reduce((total, item) => {
+                return total +
+                  Number(item.quantity || item.qty || 1);
+              }, 0)
+            : 0;
+
+        countElement.textContent = totalItems;
+
+        countElement.style.display =
+          totalItems > 0 ? "flex" : "none";
+
+      } catch (error) {
+
+        countElement.textContent = "0";
+        countElement.style.display = "none";
+
+      }
+    }
+
+
+    /* =========================
+       CLOSE MOBILE MENU
+    ========================= */
+
+    document.addEventListener("click", function(event) {
+
+      const nav =
+        document.getElementById("navLinks");
+
+      const menuButton =
+        document.querySelector(".menu-btn");
+
+      if (
+        nav.classList.contains("open") &&
+        !nav.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        nav.classList.remove("open");
+      }
+
+    });
+
+
+    /* =========================
+       INITIALIZE
+    ========================= */
+
+    updateCartCount();
+
+    window.addEventListener(
+      "storage",
+      updateCartCount
+    );
+  </script>
+
+</body>
+  </html>
