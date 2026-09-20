@@ -1,1193 +1,1049 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>NexaCart — Shopping Cart</title>
-
-<meta name="description" content="Review your NexaCart shopping cart and continue to checkout.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --black:#191714;
-  --dark:#24211d;
-  --cream:#f5f1e8;
-  --paper:#fbf9f4;
-  --line:#ded8cc;
-  --muted:#756f66;
-  --accent:#b65f3e;
-  --accent-dark:#984b30;
-  --white:#fff;
-  --container:1280px;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  font-family:"DM Sans",sans-serif;
-  color:var(--black);
-  background:var(--paper);
-  line-height:1.6;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button{
-  font:inherit;
-  cursor:pointer;
-}
-
-img{
-  width:100%;
-  display:block;
-}
-
-.top-bar{
-  height:34px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--black);
-  color:#fff;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:2px;
-}
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(251,249,244,.96);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-}
-
-.header-inner{
-  width:min(var(--container),calc(100% - 48px));
-  height:82px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-}
-
-.logo{
-  font-size:21px;
-  font-weight:700;
-  letter-spacing:4px;
-}
-
-.logo span{
-  color:var(--accent);
-}
-
-.nav{
-  display:flex;
-  align-items:center;
-  gap:34px;
-}
-
-.nav a{
-  position:relative;
-  color:#4e4942;
-  font-size:13px;
-  font-weight:600;
-}
-
-.nav a:hover,
-.nav a.active{
-  color:var(--black);
-}
-
-.nav a.active::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-9px;
-  height:1px;
-  background:var(--accent);
-}
-
-.header-actions{
-  justify-self:end;
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-.icon-btn{
-  border:0;
-  background:none;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  color:var(--black);
-}
-
-.icon-btn svg{
-  width:19px;
-  height:19px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:1.6;
-}
-
-.cart-count{
-  min-width:19px;
-  height:19px;
-  padding:0 5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--accent);
-  color:#fff;
-  border-radius:50%;
-  font-size:9px;
-  font-weight:700;
-}
-
-.menu-btn{
-  display:none;
-  border:0;
-  background:none;
-  width:28px;
-}
-
-.menu-btn span{
-  display:block;
-  height:1px;
-  background:var(--black);
-  margin:6px 0;
-}
-
-.mobile-nav{
-  display:none;
-}
-
-main{
-  width:min(var(--container),calc(100% - 48px));
-  margin:auto;
-  padding:80px 0 110px;
-}
-
-.page-heading{
-  padding-bottom:45px;
-  border-bottom:1px solid var(--line);
-}
-
-.eyebrow{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:var(--accent);
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:2.4px;
-  margin-bottom:18px;
-}
-
-.eyebrow::before{
-  content:"";
-  width:28px;
-  height:1px;
-  background:var(--accent);
-}
-
-.page-heading h1{
-  font-size:clamp(48px,6vw,78px);
-  line-height:.95;
-  letter-spacing:-3px;
-  font-weight:600;
-}
-
-.page-heading h1 em{
-  color:var(--accent);
-  font-family:"Playfair Display",serif;
-  font-weight:500;
-}
-
-.cart-layout{
-  display:grid;
-  grid-template-columns:1fr 390px;
-  gap:70px;
-  margin-top:55px;
-}
-
-.cart-items{
-  display:flex;
-  flex-direction:column;
-}
-
-.cart-item{
-  display:grid;
-  grid-template-columns:130px 1fr auto;
-  gap:25px;
-  padding:25px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.cart-image{
-  width:130px;
-  height:145px;
-  overflow:hidden;
-  background:#eee;
-}
-
-.cart-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.item-info{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.item-category{
-  color:var(--accent);
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-}
-
-.item-name{
-  margin:7px 0 5px;
-  font-size:18px;
-  font-weight:600;
-}
-
-.item-price{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.item-controls{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  justify-content:center;
-  gap:18px;
-}
-
-.quantity-control{
-  display:flex;
-  align-items:center;
-  border:1px solid var(--line);
-}
-
-.quantity-control button{
-  width:31px;
-  height:31px;
-  border:0;
-  background:transparent;
-  color:var(--black);
-}
-
-.quantity-control span{
-  width:32px;
-  text-align:center;
-  font-size:11px;
-  font-weight:600;
-}
-
-.item-total{
-  font-size:15px;
-  font-weight:700;
-}
-
-.remove-btn{
-  border:0;
-  background:none;
-  color:var(--muted);
-  font-size:9px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  border-bottom:1px solid var(--muted);
-  padding-bottom:3px;
-}
-
-.remove-btn:hover{
-  color:var(--accent);
-  border-color:var(--accent);
-}
-
-.summary{
-  height:max-content;
-  background:var(--cream);
-  padding:35px;
-  position:sticky;
-  top:120px;
-}
-
-.summary h2{
-  font-size:25px;
-  letter-spacing:-1px;
-  margin-bottom:28px;
-}
-
-.summary-row{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  padding:13px 0;
-  border-bottom:1px solid var(--line);
-  font-size:12px;
-}
-
-.summary-row span:first-child{
-  color:var(--muted);
-}
-
-.summary-total{
-  display:flex;
-  justify-content:space-between;
-  margin-top:22px;
-  font-size:18px;
-  font-weight:700;
-}
-
-.checkout-btn{
-  width:100%;
-  margin-top:28px;
-  padding:17px;
-  border:0;
-  background:var(--black);
-  color:#fff;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:1px;
-  transition:.3s;
-}
-
-.checkout-btn:hover{
-  background:var(--accent);
-}
-
-.continue-btn{
-  display:block;
-  text-align:center;
-  margin-top:17px;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:1px;
-  color:var(--muted);
-}
-
-.empty-cart{
-  padding:90px 20px;
-  text-align:center;
-  border:1px solid var(--line);
-}
-
-.empty-cart-icon{
-  width:55px;
-  height:55px;
-  margin:0 auto 22px;
-  border:1px solid var(--line);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.empty-cart-icon svg{
-  width:23px;
-  fill:none;
-  stroke:var(--black);
-  stroke-width:1.4;
-}
-
-.empty-cart h2{
-  font-size:30px;
-  margin-bottom:9px;
-}
-
-.empty-cart p{
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:25px;
-}
-
-.shop-btn{
-  display:inline-block;
-  padding:14px 23px;
-  background:var(--black);
-  color:#fff;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-.shop-btn:hover{
-  background:var(--accent);
-}
-
-.footer{
-  background:var(--black);
-  color:#fff;
-  padding:70px 0 25px;
-}
-
-.footer-main{
-  width:min(var(--container),calc(100% - 48px));
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.6fr repeat(3,1fr);
-  gap:50px;
-}
-
-.footer-about p{
-  max-width:270px;
-  color:#99928a;
-  font-size:12px;
-  margin-top:17px;
-}
-
-.footer-column{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.footer-column h4{
-  font-size:10px;
-  letter-spacing:1.5px;
-  margin-bottom:8px;
-}
-
-.footer-column a{
-  color:#99928a;
-  font-size:11px;
-}
-
-.footer-column a:hover{
-  color:#fff;
-}
-
-.footer-bottom{
-  width:min(var(--container),calc(100% - 48px));
-  margin:60px auto 0;
-  padding-top:20px;
-  border-top:1px solid #393632;
-  display:flex;
-  justify-content:space-between;
-  color:#77716a;
-  font-size:9px;
-}
-
-.toast{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:2000;
-  background:var(--black);
-  color:#fff;
-  padding:14px 18px;
-  font-size:11px;
-  transform:translateY(100px);
-  opacity:0;
-  transition:.3s;
-}
-
-.toast.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-@media(max-width:1000px){
-
-  .header-inner{
-    grid-template-columns:1fr auto;
-  }
-
-  .nav{
-    display:none;
-  }
-
-  .menu-btn{
-    display:block;
-  }
-
-  .mobile-nav{
-    border-top:1px solid var(--line);
-    padding:15px 24px 22px;
-  }
-
-  .mobile-nav.open{
-    display:flex;
-    flex-direction:column;
-  }
-
-  .mobile-nav a{
-    padding:11px 0;
-    border-bottom:1px solid var(--line);
-    font-size:13px;
-  }
-
-  .cart-layout{
-    grid-template-columns:1fr;
-    gap:45px;
-  }
-
-  .summary{
-    position:static;
-  }
-}
-
-@media(max-width:650px){
-
-  .top-bar{
-    font-size:8px;
-    letter-spacing:1px;
-  }
-
-  .header-inner{
-    width:calc(100% - 32px);
-    height:70px;
-  }
-
-  .logo{
-    font-size:17px;
-    letter-spacing:3px;
-  }
-
-  .search-btn span,
-  .cart-btn span{
-    display:none;
-  }
-
-  main{
-    width:calc(100% - 32px);
-    padding:60px 0 75px;
-  }
-
-  .page-heading{
-    padding-bottom:35px;
-  }
-
-  .page-heading h1{
-    font-size:49px;
-    letter-spacing:-2.5px;
-  }
-
-  .cart-layout{
-    margin-top:35px;
-  }
-
-  .cart-item{
-    grid-template-columns:90px 1fr;
-    gap:16px;
-  }
-
-  .cart-image{
-    width:90px;
-    height:105px;
-  }
-
-  .item-controls{
-    grid-column:2;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-  }
-
-  .item-name{
-    font-size:15px;
-  }
-
-  .summary{
-    padding:27px 22px;
-  }
-
-  .footer-main{
-    width:calc(100% - 32px);
-    grid-template-columns:1fr 1fr;
-    gap:40px 25px;
-  }
-
-  .footer-about{
-    grid-column:1 / -1;
-  }
-
-  .footer-bottom{
-    width:calc(100% - 32px);
-    flex-direction:column;
-    gap:8px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shopping Cart | NEXACART</title>
+  <meta name="description" content="Review your shopping cart at NEXACART.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark: #20201e;
+      --cream: #f5f0e8;
+      --cream-light: #fbf8f2;
+      --terracotta: #b85c3d;
+      --text: #252422;
+      --muted: #77736c;
+      --border: #ded8ce;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", Arial, sans-serif;
+      background: var(--cream-light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .top-bar {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    .header {
+      background: var(--cream-light);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--terracotta);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      border: 0;
+      background: transparent;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      position: relative;
+      font-size: 18px;
+      transition: background 0.25s ease;
+    }
+
+    .icon-btn:hover {
+      background: #eee8de;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: 1px;
+      right: 0;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 20px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    .cart-section {
+      padding: 65px 0 100px;
+    }
+
+    .page-heading {
+      margin-bottom: 38px;
+    }
+
+    .eyebrow {
+      color: var(--terracotta);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      font-weight: 800;
+    }
+
+    .page-heading h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-top: 8px;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .cart-items {
+      border-top: 1px solid var(--border);
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 115px 1fr auto;
+      gap: 22px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .cart-image {
+      width: 115px;
+      height: 130px;
+      background: #ebe6dd;
+      overflow: hidden;
+    }
+
+    .cart-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cart-category {
+      color: var(--terracotta);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .cart-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .cart-price {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .quantity-control {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: #fff;
+      height: 42px;
+      margin-top: 16px;
+    }
+
+    .quantity-control button {
+      width: 38px;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      font-size: 17px;
+    }
+
+    .quantity-control button:hover {
+      background: #f0ebe3;
+    }
+
+    .quantity-value {
+      width: 35px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .cart-item-right {
+      text-align: right;
+    }
+
+    .item-total {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .remove-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .remove-btn:hover {
+      color: var(--terracotta);
+    }
+
+    .summary {
+      background: #ebe6dd;
+      padding: 28px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .summary h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .summary-row span:first-child {
+      color: var(--muted);
+    }
+
+    .summary-total {
+      border-top: 1px solid #d4cec4;
+      margin-top: 20px;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      background: var(--dark);
+      color: #fff;
+      margin-top: 24px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+      transition: background 0.25s ease;
+    }
+
+    .checkout-btn:hover {
+      background: var(--terracotta);
+    }
+
+    .continue-shopping {
+      display: block;
+      text-align: center;
+      margin-top: 17px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .continue-shopping:hover {
+      color: var(--terracotta);
+    }
+
+    .empty-cart {
+      display: none;
+      text-align: center;
+      padding: 80px 20px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .empty-cart-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .empty-cart h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .empty-cart p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .shop-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 25px;
+      background: var(--dark);
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+
+    .shop-btn:hover {
+      background: var(--terracotta);
+    }
+
+    .footer {
+      background: var(--dark);
+      color: #fff;
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      padding-bottom: 45px;
+    }
+
+    .footer-logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .footer-about {
+      color: #aaa69e;
+      font-size: 13px;
+      max-width: 320px;
+      margin-top: 15px;
+    }
+
+    .footer h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 17px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-links a {
+      color: #aaa69e;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-contact {
+      color: #aaa69e;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #3b3a36;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #858179;
+      font-size: 11px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 18px;
+      border-left: 4px solid var(--terracotta);
+      font-size: 13px;
+      z-index: 5000;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        gap: 18px;
+      }
+
+      .cart-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .summary {
+        position: static;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: var(--cream-light);
+        border-bottom: 1px solid var(--border);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 20px 25px;
+        gap: 18px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .search-btn {
+        display: none;
+      }
+
+      .cart-section {
+        padding: 40px 0 70px;
+      }
+
+      .cart-item {
+        grid-template-columns: 90px 1fr;
+        gap: 15px;
+      }
+
+      .cart-image {
+        width: 90px;
+        height: 105px;
+      }
+
+      .cart-item-right {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 20px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .logo {
+        font-size: 19px;
+      }
+
+      .nav-actions {
+        gap: 0;
+      }
+
+      .page-heading h1 {
+        font-size: 42px;
+      }
+
+      .cart-item {
+        grid-template-columns: 78px 1fr;
+      }
+
+      .cart-image {
+        width: 78px;
+        height: 92px;
+      }
+
+      .cart-name {
+        font-size: 16px;
+      }
+
+      .summary {
+        padding: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="top-bar">
-  FREE SHIPPING ON ORDERS OVER $75
-</div>
-
-<header class="header">
-
-  <div class="header-inner">
-
-    <a href="index.html" class="logo">
-      NEXA<span>CART</span>
-    </a>
-
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="categories.html">Categories</a>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="header-actions">
-
-      <button class="icon-btn search-btn" id="searchBtn">
-        <svg viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="6"></circle>
-          <path d="M16 16L21 21"></path>
-        </svg>
-        <span>Search</span>
-      </button>
-
-      <button class="icon-btn cart-btn" id="cartBtn">
-        <svg viewBox="0 0 24 24">
-          <path d="M3 4h2l2 12h11l2-8H7"></path>
-          <circle cx="10" cy="20" r="1"></circle>
-          <circle cx="17" cy="20" r="1"></circle>
-        </svg>
-        <span>Cart</span>
-        <b class="cart-count" id="cartCount">0</b>
-      </button>
-
-      <button class="menu-btn" id="menuBtn">
-        <span></span>
-        <span></span>
-      </button>
-
-    </div>
-
+  <div class="top-bar">
+    FREE SHIPPING ON ORDERS OVER $75
   </div>
 
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="index.html">Home</a>
-    <a href="categories.html">Categories</a>
-    <a href="shop.html">Shop</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <header class="header">
+    <div class="container nav">
 
-</header>
+      <a href="index.html" class="logo">NEXACART</a>
 
-<main>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-  <section class="page-heading">
+      <div class="nav-actions">
 
-    <p class="eyebrow">
-      YOUR SELECTION
-    </p>
+        <button class="icon-btn search-btn" onclick="goToShop()" aria-label="Search">
+          ⌕
+        </button>
 
-    <h1>
-      Shopping
-      <em>cart.</em>
-    </h1>
+        <button class="icon-btn" onclick="goToCart()" aria-label="Cart">
+          🛒
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
 
-  </section>
+        <button class="icon-btn menu-btn" onclick="toggleMenu()" aria-label="Menu">
+          ☰
+        </button>
 
-  <section class="cart-layout">
-
-    <div class="cart-items" id="cartItems"></div>
-
-    <aside class="summary" id="summary">
-
-      <h2>Order summary</h2>
-
-      <div class="summary-row">
-        <span>Subtotal</span>
-        <strong id="subtotal">$0.00</strong>
       </div>
 
-      <div class="summary-row">
-        <span>Shipping</span>
-        <strong id="shipping">$0.00</strong>
+    </div>
+  </header>
+
+  <main class="cart-section">
+    <div class="container">
+
+      <div class="page-heading">
+        <div class="eyebrow">Your selection</div>
+        <h1>Shopping cart.</h1>
       </div>
 
-      <div class="summary-row">
-        <span>Discount</span>
-        <strong>$0.00</strong>
+      <div class="cart-layout" id="cartLayout">
+
+        <div class="cart-items" id="cartItems"></div>
+
+        <aside class="summary">
+
+          <h2>Order Summary</h2>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="subtotal">$0.00</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping</span>
+            <strong id="shipping">$0.00</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Discount</span>
+            <strong id="discount">$0.00</strong>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <span id="total">$0.00</span>
+          </div>
+
+          <button class="checkout-btn" onclick="goToCheckout()">
+            Proceed to Checkout
+          </button>
+
+          <a href="shop.html" class="continue-shopping">
+            Continue Shopping
+          </a>
+
+        </aside>
+
       </div>
 
-      <div class="summary-total">
-        <span>Total</span>
-        <span id="total">$0.00</span>
-      </div>
+      <div class="empty-cart" id="emptyCart">
 
-      <button class="checkout-btn" id="checkoutBtn">
-        PROCEED TO CHECKOUT
-      </button>
+        <div class="empty-cart-icon">🛒</div>
 
-      <a href="shop.html" class="continue-btn">
-        ← Continue shopping
-      </a>
-
-    </aside>
-
-  </section>
-
-</main>
-
-<footer class="footer">
-
-  <div class="footer-main">
-
-    <div class="footer-about">
-
-      <a href="index.html" class="logo">
-        NEXA<span>CART</span>
-      </a>
-
-      <p>
-        Modern shopping for everyday living.
-        Carefully selected products, simply presented.
-      </p>
-
-    </div>
-
-    <div class="footer-column">
-
-      <h4>SHOP</h4>
-
-      <a href="shop.html">All Products</a>
-      <a href="categories.html">Categories</a>
-      <a href="shop.html">Featured</a>
-      <a href="shop.html">New Arrivals</a>
-
-    </div>
-
-    <div class="footer-column">
-
-      <h4>COMPANY</h4>
-
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms</a>
-
-    </div>
-
-    <div class="footer-column">
-
-      <h4>CATEGORIES</h4>
-
-      <a href="shop.html?category=electronics">Electronics</a>
-      <a href="shop.html?category=fashion">Fashion</a>
-      <a href="shop.html?category=accessories">Accessories</a>
-      <a href="shop.html?category=home">Home & Lifestyle</a>
-
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-
-    <span>
-      © 2026 NexaCart. All rights reserved.
-    </span>
-
-    <span>
-      Modern commerce, thoughtfully designed.
-    </span>
-
-  </div>
-
-</footer>
-
-<div class="toast" id="toast"></div>
-
-<script>
-
-/* =========================================================
-   NEXACART — CART SYSTEM
-========================================================= */
-
-const cartItems = document.getElementById("cartItems");
-const cartCount = document.getElementById("cartCount");
-const subtotalElement = document.getElementById("subtotal");
-const shippingElement = document.getElementById("shipping");
-const totalElement = document.getElementById("total");
-const checkoutBtn = document.getElementById("checkoutBtn");
-const menuBtn = document.getElementById("menuBtn");
-const mobileNav = document.getElementById("mobileNav");
-const searchBtn = document.getElementById("searchBtn");
-const cartBtn = document.getElementById("cartBtn");
-const toast = document.getElementById("toast");
-
-function getCart(){
-
-  try{
-
-    const cart = JSON.parse(
-      localStorage.getItem("nexacartCart")
-    );
-
-    return Array.isArray(cart) ? cart : [];
-
-  }catch(error){
-
-    return [];
-
-  }
-
-}
-
-function saveCart(cart){
-
-  localStorage.setItem(
-    "nexacartCart",
-    JSON.stringify(cart)
-  );
-
-}
-
-function getQuantity(item){
-
-  const quantity = Number(
-    item.quantity ?? item.qty ?? 1
-  );
-
-  return quantity > 0 ? quantity : 1;
-
-}
-
-function setQuantity(item, quantity){
-
-  item.quantity = quantity;
-  item.qty = quantity;
-
-}
-
-function money(value){
-
-  return "$" + Number(value).toFixed(2);
-
-}
-
-function updateHeaderCart(){
-
-  const cart = getCart();
-
-  let count = 0;
-
-  cart.forEach(item => {
-
-    count += getQuantity(item);
-
-  });
-
-  cartCount.textContent = count;
-
-}
-
-function renderCart(){
-
-  const cart = getCart();
-
-  updateHeaderCart();
-
-  if(cart.length === 0){
-
-    cartItems.innerHTML = `
-      <div class="empty-cart">
-
-        <div class="empty-cart-icon">
-
-          <svg viewBox="0 0 24 24">
-            <path d="M3 4h2l2 12h11l2-8H7"></path>
-            <circle cx="10" cy="20" r="1"></circle>
-            <circle cx="17" cy="20" r="1"></circle>
-          </svg>
-
-        </div>
-
-        <h2>Your cart is empty</h2>
+        <h2>Your cart is empty.</h2>
 
         <p>
           Looks like you haven't added anything yet.
         </p>
 
         <a href="shop.html" class="shop-btn">
-          START SHOPPING
+          Start Shopping
         </a>
 
       </div>
-    `;
 
-    subtotalElement.textContent = "$0.00";
-    shippingElement.textContent = "$0.00";
-    totalElement.textContent = "$0.00";
+    </div>
+  </main>
 
-    checkoutBtn.disabled = true;
-    checkoutBtn.style.opacity = ".45";
-    checkoutBtn.style.cursor = "not-allowed";
+  <footer class="footer">
+    <div class="container">
 
-    return;
+      <div class="footer-grid">
 
-  }
+        <div>
+          <div class="footer-logo">NEXACART</div>
 
-  checkoutBtn.disabled = false;
-  checkoutBtn.style.opacity = "1";
-  checkoutBtn.style.cursor = "pointer";
-
-  let subtotal = 0;
-
-  cartItems.innerHTML = "";
-
-  cart.forEach((item,index) => {
-
-    const quantity = getQuantity(item);
-    const price = Number(item.price) || 0;
-    const itemTotal = price * quantity;
-
-    subtotal += itemTotal;
-
-    const itemElement = document.createElement("article");
-
-    itemElement.className = "cart-item";
-
-    itemElement.innerHTML = `
-
-      <a
-        href="product.html?id=${encodeURIComponent(item.id)}"
-        class="cart-image"
-      >
-
-        <img
-          src="${item.image || "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80"}"
-          alt="${item.name || "Product"}"
-        >
-
-      </a>
-
-      <div class="item-info">
-
-        <span class="item-category">
-          ${item.category || "NexaCart"}
-        </span>
-
-        <a
-          href="product.html?id=${encodeURIComponent(item.id)}"
-          class="item-name"
-        >
-          ${item.name || "Product"}
-        </a>
-
-        <span class="item-price">
-          ${money(price)} each
-        </span>
-
-      </div>
-
-      <div class="item-controls">
-
-        <div class="quantity-control">
-
-          <button
-            type="button"
-            data-action="decrease"
-            data-index="${index}"
-          >
-            −
-          </button>
-
-          <span>${quantity}</span>
-
-          <button
-            type="button"
-            data-action="increase"
-            data-index="${index}"
-          >
-            +
-          </button>
-
+          <p class="footer-about">
+            A modern shopping destination built around quality,
+            simplicity and products worth bringing home.
+          </p>
         </div>
 
-        <strong class="item-total">
-          ${money(itemTotal)}
-        </strong>
+        <div>
+          <h4>Shop</h4>
 
-        <button
-          type="button"
-          class="remove-btn"
-          data-action="remove"
-          data-index="${index}"
-        >
-          Remove
-        </button>
+          <div class="footer-links">
+            <a href="shop.html">All Products</a>
+            <a href="categories.html">Categories</a>
+            <a href="shop.html?category=electronics">Electronics</a>
+            <a href="shop.html?category=fashion">Fashion</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+
+          <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Categories</h4>
+
+          <div class="footer-links">
+            <a href="shop.html?category=accessories">Accessories</a>
+            <a href="shop.html?category=home">Home & Lifestyle</a>
+            <a href="shop.html?category=fashion">Fashion</a>
+            <a href="shop.html?category=electronics">Electronics</a>
+          </div>
+        </div>
 
       </div>
 
-    `;
+      <div class="footer-bottom">
+        <span>© 2026 NEXACART. All rights reserved.</span>
+        <span>Designed for modern shopping.</span>
+      </div>
 
-    cartItems.appendChild(itemElement);
+    </div>
+  </footer>
 
-  });
+  <div class="toast" id="toast"></div>
 
-  const shipping = subtotal >= 75 ? 0 : 7.99;
-  const total = subtotal + shipping;
-
-  subtotalElement.textContent = money(subtotal);
-  shippingElement.textContent =
-    shipping === 0 ? "FREE" : money(shipping);
-
-  totalElement.textContent = money(total);
-
-}
-
-cartItems.addEventListener("click",(event)=>{
-
-  const button = event.target.closest("[data-action]");
-
-  if(!button) return;
-
-  const index = Number(button.dataset.index);
-  const action = button.dataset.action;
-
-  const cart = getCart();
-
-  if(!cart[index]) return;
-
-  const currentQuantity = getQuantity(cart[index]);
-
-  if(action === "increase"){
-
-    if(currentQuantity < 20){
-
-      setQuantity(
-        cart[index],
-        currentQuantity + 1
-      );
-
-    }else{
-
-      showToast("Maximum quantity is 20.");
-
+  <script>
+    function getCart() {
+      try {
+        return JSON.parse(
+          localStorage.getItem("nexacartCart")
+        ) || [];
+      } catch (error) {
+        return [];
+      }
     }
 
-  }
-
-  if(action === "decrease"){
-
-    if(currentQuantity > 1){
-
-      setQuantity(
-        cart[index],
-        currentQuantity - 1
+    function saveCart(cart) {
+      localStorage.setItem(
+        "nexacartCart",
+        JSON.stringify(cart)
       );
-
-    }else{
-
-      cart.splice(index,1);
-
     }
 
-  }
+    function getQuantity(item) {
+      return Number(
+        item.quantity ??
+        item.qty ??
+        1
+      );
+    }
 
-  if(action === "remove"){
+    function updateHeaderCart() {
 
-    cart.splice(index,1);
+      const cart = getCart();
 
-  }
+      let totalItems = 0;
 
-  saveCart(cart);
+      cart.forEach(item => {
+        totalItems += getQuantity(item);
+      });
 
-  renderCart();
+      document.getElementById("cartCount").textContent =
+        totalItems;
+    }
 
-});
+    function renderCart() {
 
-checkoutBtn.addEventListener("click",()=>{
+      const cart = getCart();
 
-  const cart = getCart();
+      const cartItems =
+        document.getElementById("cartItems");
 
-  if(cart.length === 0){
+      const cartLayout =
+        document.getElementById("cartLayout");
 
-    showToast("Your cart is empty.");
+      const emptyCart =
+        document.getElementById("emptyCart");
 
-    return;
+      if (!cart.length) {
 
-  }
+        cartLayout.style.display = "none";
+        emptyCart.style.display = "block";
 
-  window.location.href = "checkout.html";
+        updateHeaderCart();
 
-});
+        return;
+      }
 
-cartBtn.addEventListener("click",()=>{
+      cartLayout.style.display = "grid";
+      emptyCart.style.display = "none";
 
-  window.location.href = "cart.html";
+      let subtotal = 0;
 
-});
+      cartItems.innerHTML = cart.map((item, index) => {
 
-searchBtn.addEventListener("click",()=>{
+        const quantity = getQuantity(item);
+        const itemTotal = Number(item.price) * quantity;
 
-  window.location.href = "shop.html";
+        subtotal += itemTotal;
 
-});
+        /*
+          IMPORTANT:
+          No product image is used as a fallback here.
+          The image saved with the cart item is used directly.
+        */
+        const imageMarkup = item.image
+          ? `<img src="${item.image}" alt="${item.name}">`
+          : `<div style="
+                width:100%;
+                height:100%;
+                display:grid;
+                place-items:center;
+                color:#77736c;
+                font-size:11px;
+                text-align:center;
+                padding:10px;
+              ">Image unavailable</div>`;
 
-menuBtn.addEventListener("click",()=>{
+        return `
+          <div class="cart-item">
 
-  mobileNav.classList.toggle("open");
+            <div class="cart-image">
+              ${imageMarkup}
+            </div>
 
-});
+            <div class="cart-item-info">
 
-document.querySelectorAll(".mobile-nav a").forEach(link=>{
+              <div class="cart-category">
+                ${item.category || "Product"}
+              </div>
 
-  link.addEventListener("click",()=>{
+              <div class="cart-name">
+                ${item.name}
+              </div>
 
-    mobileNav.classList.remove("open");
+              <div class="cart-price">
+                $${Number(item.price).toFixed(2)} each
+              </div>
 
-  });
+              <div class="quantity-control">
 
-});
+                <button
+                  onclick="changeItemQuantity(${index}, -1)"
+                  aria-label="Decrease quantity"
+                >
+                  −
+                </button>
 
-function showToast(message){
+                <span class="quantity-value">
+                  ${quantity}
+                </span>
 
-  toast.textContent = message;
+                <button
+                  onclick="changeItemQuantity(${index}, 1)"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
 
-  toast.classList.add("show");
+              </div>
 
-  setTimeout(()=>{
+            </div>
 
-    toast.classList.remove("show");
+            <div class="cart-item-right">
 
-  },2200);
+              <div class="item-total">
+                $${itemTotal.toFixed(2)}
+              </div>
 
-}
+              <button
+                class="remove-btn"
+                onclick="removeItem(${index})"
+              >
+                Remove
+              </button>
 
-window.addEventListener("storage",()=>{
+            </div>
 
-  renderCart();
+          </div>
+        `;
 
-});
+      }).join("");
 
-renderCart();
+      const shipping =
+        subtotal >= 75 ? 0 : 7.99;
 
-</script>
+      const discount = 0;
+
+      const total =
+        subtotal + shipping - discount;
+
+      document.getElementById("subtotal").textContent =
+        "$" + subtotal.toFixed(2);
+
+      document.getElementById("shipping").textContent =
+        shipping === 0
+          ? "Free"
+          : "$" + shipping.toFixed(2);
+
+      document.getElementById("discount").textContent =
+        "$" + discount.toFixed(2);
+
+      document.getElementById("total").textContent =
+        "$" + total.toFixed(2);
+
+      updateHeaderCart();
+    }
+
+    function changeItemQuantity(index, amount) {
+
+      const cart = getCart();
+
+      if (!cart[index]) {
+        return;
+      }
+
+      let quantity =
+        getQuantity(cart[index]) + amount;
+
+      if (quantity < 1) {
+        quantity = 1;
+      }
+
+      if (quantity > 20) {
+        quantity = 20;
+      }
+
+      cart[index].quantity = quantity;
+      cart[index].qty = quantity;
+
+      saveCart(cart);
+
+      renderCart();
+    }
+
+    function removeItem(index) {
+
+      const cart = getCart();
+
+      if (!cart[index]) {
+        return;
+      }
+
+      const removedName = cart[index].name;
+
+      cart.splice(index, 1);
+
+      saveCart(cart);
+
+      renderCart();
+
+      showToast(
+        removedName + " removed from cart"
+      );
+    }
+
+    function goToCheckout() {
+
+      const cart = getCart();
+
+      if (!cart.length) {
+        showToast("Your cart is empty.");
+        return;
+      }
+
+      window.location.href =
+        "checkout.html";
+    }
+
+    function goToCart() {
+      window.location.href =
+        "cart.html";
+    }
+
+    function goToShop() {
+      window.location.href =
+        "shop.html";
+    }
+
+    function toggleMenu() {
+
+      document
+        .getElementById("navLinks")
+        .classList.toggle("open");
+    }
+
+    function showToast(message) {
+
+      const toast =
+        document.getElementById("toast");
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      clearTimeout(window.toastTimer);
+
+      window.toastTimer =
+        setTimeout(function() {
+          toast.classList.remove("show");
+        }, 2800);
+    }
+
+    renderCart();
+    updateHeaderCart();
+
+    window.addEventListener("storage", function() {
+      renderCart();
+    });
+  </script>
 
 </body>
 </html>
