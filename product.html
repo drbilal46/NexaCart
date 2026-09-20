@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Product | NEXACART</title>
+  <meta name="description" content="View product details and shop at NEXACART.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark: #20201e;
+      --dark-soft: #2b2a27;
+      --cream: #f5f0e8;
+      --cream-light: #fbf8f2;
+      --terracotta: #b85c3d;
+      --terracotta-dark: #98472e;
+      --text: #252422;
+      --muted: #77736c;
+      --border: #ded8ce;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream-light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--cream-light);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--terracotta);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      border: 0;
+      background: transparent;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      position: relative;
+      font-size: 18px;
+      transition: background 0.25s ease;
+    }
+
+    .icon-btn:hover {
+      background: #eee8de;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: 1px;
+      right: 0;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 20px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--terracotta);
+    }
+
+    .breadcrumb span {
+      margin: 0 8px;
+      color: #aaa49b;
+    }
+
+    /* PRODUCT */
+    .product-section {
+      padding: 65px 0 100px;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .product-gallery {
+      background: #ebe6dd;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: var(--dark);
+      color: #fff;
+      padding: 7px 11px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .product-badge.sale {
+      background: var(--terracotta);
+    }
+
+    .product-category {
+      color: var(--terracotta);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.03;
+      letter-spacing: -2px;
+      margin-bottom: 17px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--terracotta);
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .rating-number {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .current-price {
+      font-size: 27px;
+      font-weight: 800;
+    }
+
+    .old-price {
+      color: #aaa49b;
+      text-decoration: line-through;
+      font-size: 16px;
+    }
+
+    .product-description {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 570px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .purchase-area {
+      padding: 25px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quantity-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .purchase-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: #fff;
+      height: 50px;
+    }
+
+    .quantity-control button {
+      width: 43px;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      font-size: 18px;
+    }
+
+    .quantity-control button:hover {
+      background: #f0ebe3;
+    }
+
+    .quantity-value {
+      width: 40px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .add-cart {
+      flex: 1;
+      height: 50px;
+      border: 0;
+      background: var(--dark);
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+      transition: background 0.25s ease;
+    }
+
+    .add-cart:hover {
+      background: var(--terracotta);
+    }
+
+    .buy-now {
+      width: 100%;
+      height: 50px;
+      margin-top: 12px;
+      border: 1px solid var(--dark);
+      background: transparent;
+      color: var(--dark);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+      transition: all 0.25s ease;
+    }
+
+    .buy-now:hover {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    /* DETAILS */
+    .product-details {
+      padding-top: 25px;
+      display: grid;
+      gap: 17px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .detail-label {
+      color: var(--muted);
+    }
+
+    .detail-value {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    /* INFO STRIP */
+    .info-strip {
+      background: var(--dark);
+      color: #fff;
+      padding: 28px 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .info-icon {
+      width: 43px;
+      height: 43px;
+      border: 1px solid #55534d;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .info-item strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .info-item span {
+      display: block;
+      color: #aaa69e;
+      font-size: 11px;
+    }
+
+    /* RELATED PRODUCTS */
+    .related-section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 32px;
+      gap: 20px;
+    }
+
+    .eyebrow {
+      color: var(--terracotta);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      font-weight: 800;
+    }
+
+    .section-heading h2 {
+      margin-top: 7px;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+
+    .view-all {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--dark);
+      padding-bottom: 3px;
+    }
+
+    .view-all:hover {
+      color: var(--terracotta);
+      border-color: var(--terracotta);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .related-card {
+      min-width: 0;
+    }
+
+    .related-image {
+      aspect-ratio: 1 / 1.1;
+      background: #ebe6dd;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .related-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .related-card:hover img {
+      transform: scale(1.045);
+    }
+
+    .related-category {
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+    }
+
+    .related-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 4px 0;
+    }
+
+    .related-price {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: #e9e2d7;
+      padding: 70px 0;
+    }
+
+    .newsletter-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .newsletter-copy {
+      max-width: 500px;
+    }
+
+    .newsletter-copy span {
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .newsletter-copy h2 {
+      margin-top: 7px;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+
+    .newsletter-copy p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      width: min(470px, 100%);
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-right: 0;
+      padding: 14px 16px;
+      background: #fff;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      border: 0;
+      background: var(--dark);
+      color: #fff;
+      padding: 0 22px;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--terracotta);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--dark);
+      color: #fff;
+      padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      padding-bottom: 45px;
+    }
+
+    .footer-logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .footer-about {
+      color: #aaa69e;
+      font-size: 13px;
+      max-width: 320px;
+      margin-top: 15px;
+    }
+
+    .footer h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 17px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-links a {
+      color: #aaa69e;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-contact {
+      color: #aaa69e;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #3b3a36;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #858179;
+      font-size: 11px;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 18px;
+      border-left: 4px solid var(--terracotta);
+      font-size: 13px;
+      z-index: 5000;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* MOBILE */
+    @media (max-width: 980px) {
+      .nav-links {
+        gap: 18px;
+      }
+
+      .product-layout {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .product-gallery {
+        max-width: 760px;
+        width: 100%;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 15px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: var(--cream-light);
+        border-bottom: 1px solid var(--border);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 20px 25px;
+        gap: 18px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .search-btn {
+        display: none;
+      }
+
+      .product-section {
+        padding: 40px 0 70px;
+      }
+
+      .product-layout {
+        gap: 35px;
+      }
+
+      .product-title {
+        font-size: 39px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .newsletter-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .newsletter-form {
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 20px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .logo {
+        font-size: 19px;
+      }
+
+      .nav-actions {
+        gap: 0;
+      }
+
+      .purchase-row {
+        flex-direction: column;
+      }
+
+      .quantity-control {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .add-cart {
+        width: 100%;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .newsletter-copy h2 {
+        font-size: 27px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter-form input {
+        border-right: 1px solid var(--border);
+      }
+
+      .newsletter-form button {
+        min-height: 46px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    FREE SHIPPING ON ORDERS OVER $75
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav">
+
+      <a href="index.html" class="logo">NEXACART</a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="categories.html">Categories</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+
+        <button class="icon-btn search-btn" onclick="goToShop()" aria-label="Search">
+          ⌕
+        </button>
+
+        <button class="icon-btn" onclick="goToCart()" aria-label="Cart">
+          🛒
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <button class="icon-btn menu-btn" onclick="toggleMenu()" aria-label="Menu">
+          ☰
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="container breadcrumb">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <a href="shop.html">Shop</a>
+    <span>/</span>
+    <strong id="breadcrumbName">Product</strong>
+  </div>
+
+  <!-- PRODUCT -->
+  <main class="product-section">
+    <div class="container">
+
+      <div class="product-layout">
+
+        <!-- IMAGE -->
+        <div class="product-gallery">
+          <span class="product-badge" id="productBadge">Featured</span>
+          <img id="productImage" src="" alt="Product">
+        </div>
+
+        <!-- INFORMATION -->
+        <div class="product-information">
+
+          <div class="product-category" id="productCategory">
+            Product
+          </div>
+
+          <h1 class="product-title" id="productTitle">
+            Product
+          </h1>
+
+          <div class="rating">
+            <span id="productStars">★★★★★</span>
+            <span class="rating-number" id="productRating">4.8 / 5</span>
+          </div>
+
+          <div class="product-price">
+            <span class="current-price" id="productPrice">$89</span>
+            <span class="old-price" id="productOldPrice"></span>
+          </div>
+
+          <p class="product-description" id="productDescription">
+            Discover quality, thoughtful design and everyday functionality
+            with this carefully selected NEXACART product.
+          </p>
+
+          <div class="purchase-area">
+
+            <label class="quantity-label">
+              Quantity
+            </label>
+
+            <div class="purchase-row">
+
+              <div class="quantity-control">
+                <button onclick="changeQuantity(-1)" aria-label="Decrease quantity">
+                  −
+                </button>
+
+                <span class="quantity-value" id="quantity">
+                  1
+                </span>
+
+                <button onclick="changeQuantity(1)" aria-label="Increase quantity">
+                  +
+                </button>
+              </div>
+
+              <button class="add-cart" onclick="addCurrentProductToCart()">
+                Add to Cart
+              </button>
+
+            </div>
+
+            <button class="buy-now" onclick="buyNow()">
+              Buy Now
+            </button>
+
+          </div>
+
+          <!-- DETAILS -->
+          <div class="product-details">
+
+            <div class="detail-row">
+              <span class="detail-label">Availability</span>
+              <span class="detail-value">In Stock</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">Shipping</span>
+              <span class="detail-value">Free over $75</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">Returns</span>
+              <span class="detail-value">30-Day Returns</span>
+            </div>
+
+            <div class="detail-row">
+              <span class="detail-label">Product ID</span>
+              <span class="detail-value" id="productIdDisplay">
+                NXC-001
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- INFO STRIP -->
+  <section class="info-strip">
+    <div class="container info-grid">
+
+      <div class="info-item">
+        <div class="info-icon">✓</div>
+        <div>
+          <strong>Quality Products</strong>
+          <span>Carefully selected collection</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">↗</div>
+        <div>
+          <strong>Fast Shipping</strong>
+          <span>Reliable delivery experience</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">↩</div>
+        <div>
+          <strong>Easy Returns</strong>
+          <span>Simple 30-day return policy</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="related-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">You may also like</div>
+          <h2>Related Products</h2>
+        </div>
+
+        <a href="shop.html" class="view-all">
+          View All
+        </a>
+      </div>
+
+      <div class="related-grid">
+
+        <a href="product.html?id=wireless-headphones" class="related-card">
+          <div class="related-image">
+            <img
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"
+              alt="Wireless Headphones"
+            >
+          </div>
+          <div class="related-category">Electronics</div>
+          <div class="related-name">Wireless Headphones</div>
+          <div class="related-price">$89</div>
+        </a>
+
+        <a href="product.html?id=classic-wrist-watch" class="related-card">
+          <div class="related-image">
+            <img
+              src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=85"
+              alt="Classic Wrist Watch"
+            >
+          </div>
+          <div class="related-category">Accessories</div>
+          <div class="related-name">Classic Wrist Watch</div>
+          <div class="related-price">$120</div>
+        </a>
+
+        <a href="product.html?id=urban-running-shoes" class="related-card">
+          <div class="related-image">
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85"
+              alt="Urban Running Shoes"
+            >
+          </div>
+          <div class="related-category">Fashion</div>
+          <div class="related-name">Urban Running Shoes</div>
+          <div class="related-price">$74</div>
+        </a>
+
+        <a href="product.html?id=modern-table-lamp" class="related-card">
+          <div class="related-image">
+            <img
+              src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=85"
+              alt="Modern Table Lamp"
+            >
+          </div>
+          <div class="related-category">Home & Lifestyle</div>
+          <div class="related-name">Modern Table Lamp</div>
+          <div class="related-price">$68</div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="container newsletter-inner">
+
+      <div class="newsletter-copy">
+        <span>Stay in the loop</span>
+        <h2>Get new arrivals & offers.</h2>
+        <p>
+          Subscribe for product updates, special offers and curated picks.
+        </p>
+      </div>
+
+      <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+        <input
+          type="email"
+          id="emailInput"
+          placeholder="Your email address"
+          required
+        >
+        <button type="submit">Subscribe</button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-logo">NEXACART</div>
+
+          <p class="footer-about">
+            A modern shopping destination built around quality,
+            simplicity and products worth bringing home.
+          </p>
+        </div>
+
+        <div>
+          <h4>Shop</h4>
+
+          <div class="footer-links">
+            <a href="shop.html">All Products</a>
+            <a href="categories.html">Categories</a>
+            <a href="shop.html?category=electronics">Electronics</a>
+            <a href="shop.html?category=fashion">Fashion</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+
+          <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+
+          <div class="footer-contact">
+            hello@nexacart.com<br>
+            +1 (000) 123-4567<br>
+            Mon – Sat, 9AM – 6PM
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 NEXACART. All rights reserved.</span>
+        <span>Designed for modern shopping.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* =================================
+       NEXACART PRODUCT PAGE JAVASCRIPT
+    ================================= */
+
+    const products = {
+
+      "wireless-headphones": {
+        id: "wireless-headphones",
+        name: "Wireless Headphones",
+        category: "Electronics",
+        price: 89,
+        oldPrice: null,
+        rating: "4.8 / 5",
+        badge: "Popular",
+        description:
+          "Enjoy a clean and immersive listening experience with wireless headphones designed for everyday comfort, modern style and convenient use.",
+        image:
+          "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "classic-wrist-watch": {
+        id: "classic-wrist-watch",
+        name: "Classic Wrist Watch",
+        category: "Accessories",
+        price: 120,
+        oldPrice: null,
+        rating: "4.7 / 5",
+        badge: "Featured",
+        description:
+          "A refined wrist watch combining timeless styling with an understated design that works naturally with everyday and formal looks.",
+        image:
+          "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "urban-running-shoes": {
+        id: "urban-running-shoes",
+        name: "Urban Running Shoes",
+        category: "Fashion",
+        price: 74,
+        oldPrice: 95,
+        rating: "4.9 / 5",
+        badge: "Sale",
+        description:
+          "Lightweight everyday running shoes created for active routines, comfortable movement and a clean urban aesthetic.",
+        image:
+          "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "premium-leather-bag": {
+        id: "premium-leather-bag",
+        name: "Premium Leather Bag",
+        category: "Accessories",
+        price: 99,
+        oldPrice: null,
+        rating: "4.6 / 5",
+        badge: "Featured",
+        description:
+          "A sophisticated everyday bag with a practical silhouette, premium-inspired finish and enough room for your daily essentials.",
+        image:
+          "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "smart-watch-pro": {
+        id: "smart-watch-pro",
+        name: "Smart Watch Pro",
+        category: "Electronics",
+        price: 149,
+        oldPrice: null,
+        rating: "4.8 / 5",
+        badge: "New",
+        description:
+          "A modern smartwatch concept built around a sleek display, smart everyday functionality and a minimal wearable design.",
+        image:
+          "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "minimal-cotton-hoodie": {
+        id: "minimal-cotton-hoodie",
+        name: "Minimal Cotton Hoodie",
+        category: "Fashion",
+        price: 59,
+        oldPrice: null,
+        rating: "4.6 / 5",
+        badge: "Featured",
+        description:
+          "A clean and comfortable cotton hoodie designed for relaxed everyday wear with a simple modern silhouette.",
+        image:
+          "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "modern-table-lamp": {
+        id: "modern-table-lamp",
+        name: "Modern Table Lamp",
+        category: "Home & Lifestyle",
+        price: 68,
+        oldPrice: null,
+        rating: "4.5 / 5",
+        badge: "Featured",
+        description:
+          "A contemporary table lamp designed to add a warm, refined touch to desks, bedrooms and modern living spaces.",
+        image:
+          "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "premium-coffee-set": {
+        id: "premium-coffee-set",
+        name: "Premium Coffee Set",
+        category: "Home & Lifestyle",
+        price: 45,
+        oldPrice: null,
+        rating: "4.7 / 5",
+        badge: "New",
+        description:
+          "A stylish coffee set created for relaxed mornings, thoughtful hosting and a more refined everyday coffee experience.",
+        image:
+          "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "portable-speaker": {
+        id: "portable-speaker",
+        name: "Portable Speaker",
+        category: "Electronics",
+        price: 79,
+        oldPrice: null,
+        rating: "4.7 / 5",
+        badge: "Featured",
+        description:
+          "A compact speaker concept made for convenient listening at home, outdoors or wherever your day takes you.",
+        image:
+          "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "everyday-denim-jacket": {
+        id: "everyday-denim-jacket",
+        name: "Everyday Denim Jacket",
+        category: "Fashion",
+        price: 85,
+        oldPrice: null,
+        rating: "4.6 / 5",
+        badge: "Featured",
+        description:
+          "A versatile denim jacket with a timeless silhouette that fits naturally into casual everyday wardrobes.",
+        image:
+          "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1200&q=90"
+      },
+
+      "modern-travel-backpack": {
+        id: "modern-travel-backpack",
+        name: "Modern Travel Backpack",
+        category: "Accessories",
+        price: 92,
+        oldPrice: null,
+        rating: "4.8 / 5",
+        badge: "Featured",
+        description:
+          "A practical modern backpack designed for commuting, travel and everyday carrying with a clean contemporary look.",
+        image:
+          "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=90"
+      }
+
+    };
+
+    let currentProduct = null;
+    let quantity = 1;
+
+    /* GET PRODUCT FROM URL */
+    function loadProduct() {
+
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get("id");
+
+      currentProduct = products[productId];
+
+      if (!currentProduct) {
+        currentProduct = products["wireless-headphones"];
+      }
+
+      document.title =
+        currentProduct.name + " | NEXACART";
+
+      document.getElementById("breadcrumbName").textContent =
+        currentProduct.name;
+
+      document.getElementById("productCategory").textContent =
+        currentProduct.category;
+
+      document.getElementById("productTitle").textContent =
+        currentProduct.name;
+
+      document.getElementById("productRating").textContent =
+        currentProduct.rating;
+
+      document.getElementById("productPrice").textContent =
+        "$" + currentProduct.price;
+
+      document.getElementById("productDescription").textContent =
+        currentProduct.description;
+
+      document.getElementById("productImage").src =
+        currentProduct.image;
+
+      document.getElementById("productImage").alt =
+        currentProduct.name;
+
+      document.getElementById("productBadge").textContent =
+        currentProduct.badge;
+
+      document.getElementById("productBadge").className =
+        currentProduct.badge === "Sale"
+          ? "product-badge sale"
+          : "product-badge";
+
+      document.getElementById("productIdDisplay").textContent =
+        currentProduct.id.toUpperCase();
+
+      const oldPriceElement =
+        document.getElementById("productOldPrice");
+
+      if (currentProduct.oldPrice) {
+        oldPriceElement.textContent =
+          "$" + currentProduct.oldPrice;
+        oldPriceElement.style.display = "inline";
+      } else {
+        oldPriceElement.textContent = "";
+        oldPriceElement.style.display = "none";
+      }
+    }
+
+    /* QUANTITY */
+    function changeQuantity(amount) {
+
+      quantity += amount;
+
+      if (quantity < 1) {
+        quantity = 1;
+      }
+
+      if (quantity > 20) {
+        quantity = 20;
+      }
+
+      document.getElementById("quantity").textContent =
+        quantity;
+    }
+
+    /* ADD TO CART */
+    function addCurrentProductToCart() {
+
+      if (!currentProduct) {
+        return;
+      }
+
+      let cart = [];
+
+      try {
+        cart =
+          JSON.parse(localStorage.getItem("nexacartCart")) || [];
+      } catch (error) {
+        cart = [];
+      }
+
+      const existingProduct =
+        cart.find(item => item.id === currentProduct.id);
+
+      if (existingProduct) {
+
+        existingProduct.quantity =
+          Number(
+            existingProduct.quantity ||
+            existingProduct.qty ||
+            0
+          ) + quantity;
+
+        existingProduct.qty =
+          existingProduct.quantity;
+
+      } else {
+
+        cart.push({
+          id: currentProduct.id,
+          name: currentProduct.name,
+          price: currentProduct.price,
+          quantity: quantity,
+          qty: quantity
+        });
+
+      }
+
+      localStorage.setItem(
+        "nexacartCart",
+        JSON.stringify(cart)
+      );
+
+      updateCartCount();
+
+      showToast(
+        quantity +
+        " × " +
+        currentProduct.name +
+        " added to cart"
+      );
+
+      quantity = 1;
+
+      document.getElementById("quantity").textContent =
+        "1";
+    }
+
+    /* BUY NOW */
+    function buyNow() {
+
+      addCurrentProductToCart();
+
+      setTimeout(function() {
+        window.location.href = "cart.html";
+      }, 500);
+    }
+
+    /* CART COUNT */
+    function updateCartCount() {
+
+      let cart = [];
+
+      try {
+        cart =
+          JSON.parse(localStorage.getItem("nexacartCart")) || [];
+      } catch (error) {
+        cart = [];
+      }
+
+      let totalItems = 0;
+
+      cart.forEach(item => {
+        totalItems += Number(
+          item.quantity ||
+          item.qty ||
+          1
+        );
+      });
+
+      document.getElementById("cartCount").textContent =
+        totalItems;
+    }
+
+    /* GO TO CART */
+    function goToCart() {
+      window.location.href = "cart.html";
+    }
+
+    /* GO TO SHOP */
+    function goToShop() {
+      window.location.href = "shop.html";
+    }
+
+    /* MOBILE MENU */
+    function toggleMenu() {
+      document
+        .getElementById("navLinks")
+        .classList.toggle("open");
+    }
+
+    /* NEWSLETTER */
+    function subscribeNewsletter(event) {
+
+      event.preventDefault();
+
+      const email =
+        document.getElementById("emailInput").value.trim();
+
+      if (!email) {
+        return;
+      }
+
+      showToast("Thanks for subscribing!");
+
+      event.target.reset();
+    }
+
+    /* TOAST */
+    function showToast(message) {
+
+      const toast =
+        document.getElementById("toast");
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      clearTimeout(window.toastTimer);
+
+      window.toastTimer =
+        setTimeout(function() {
+          toast.classList.remove("show");
+        }, 2800);
+    }
+
+    /* START */
+    loadProduct();
+    updateCartCount();
+  </script>
+
+</body>
+  </html>
