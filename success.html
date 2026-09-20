@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NexaCart — Order Confirmed</title>
+
+<meta name="description" content="Your NexaCart order has been confirmed.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#191714;
+  --dark:#24211d;
+  --cream:#f5f1e8;
+  --paper:#fbf9f4;
+  --line:#ded8cc;
+  --muted:#756f66;
+  --accent:#b65f3e;
+  --white:#fff;
+  --container:1280px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  font-family:"DM Sans",sans-serif;
+  color:var(--black);
+  background:var(--paper);
+  display:flex;
+  flex-direction:column;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.top-bar{
+  height:34px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:var(--black);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.header{
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+
+.header-inner{
+  width:min(var(--container),calc(100% - 48px));
+  height:82px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:700;
+  letter-spacing:4px;
+}
+
+.logo span{
+  color:var(--accent);
+}
+
+.header-link{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+  border-bottom:1px solid var(--black);
+  padding-bottom:4px;
+}
+
+.header-link:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+}
+
+main{
+  flex:1;
+  width:min(900px,calc(100% - 32px));
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:80px 0;
+}
+
+.success-card{
+  width:100%;
+  background:var(--cream);
+  border:1px solid var(--line);
+  padding:70px 60px;
+  text-align:center;
+}
+
+.check{
+  width:72px;
+  height:72px;
+  margin:0 auto 28px;
+  border:1px solid var(--accent);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.check svg{
+  width:30px;
+  height:30px;
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.eyebrow{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2.4px;
+  margin-bottom:18px;
+}
+
+.eyebrow::before,
+.eyebrow::after{
+  content:"";
+  width:28px;
+  height:1px;
+  background:var(--accent);
+}
+
+.success-card h1{
+  font-size:clamp(43px,6vw,70px);
+  line-height:.95;
+  letter-spacing:-3px;
+  margin-bottom:18px;
+}
+
+.success-card h1 em{
+  color:var(--accent);
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+}
+
+.message{
+  max-width:510px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+.order-box{
+  max-width:430px;
+  margin:35px auto 0;
+  padding:20px;
+  background:var(--paper);
+  border:1px solid var(--line);
+}
+
+.order-label{
+  color:var(--muted);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.order-number{
+  margin-top:5px;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:35px;
+}
+
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-width:165px;
+  padding:15px 20px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:var(--black);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:var(--accent);
+}
+
+.btn-secondary{
+  border:1px solid var(--black);
+}
+
+.btn-secondary:hover{
+  background:var(--black);
+  color:#fff;
+}
+
+.note{
+  margin-top:30px;
+  color:var(--muted);
+  font-size:9px;
+}
+
+.footer{
+  background:var(--black);
+  color:#fff;
+  padding:25px 0;
+}
+
+.footer-inner{
+  width:min(var(--container),calc(100% - 48px));
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#77716a;
+  font-size:9px;
+}
+
+@media(max-width:600px){
+
+  .header-inner{
+    width:calc(100% - 32px);
+    height:70px;
+  }
+
+  .logo{
+    font-size:17px;
+    letter-spacing:3px;
+  }
+
+  .header-link{
+    font-size:9px;
+  }
+
+  main{
+    padding:45px 0;
+  }
+
+  .success-card{
+    padding:50px 22px;
+  }
+
+  .success-card h1{
+    font-size:43px;
+    letter-spacing:-2px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .footer-inner{
+    width:calc(100% - 32px);
+    flex-direction:column;
+    text-align:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+  ORDER CONFIRMATION
+</div>
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <a href="index.html" class="logo">
+      NEXA<span>CART</span>
+    </a>
+
+    <a href="shop.html" class="header-link">
+      CONTINUE SHOPPING →
+    </a>
+
+  </div>
+
+</header>
+
+<main>
+
+  <section class="success-card">
+
+    <div class="check">
+
+      <svg viewBox="0 0 24 24">
+        <path d="M5 12.5l4 4L19 7"></path>
+      </svg>
+
+    </div>
+
+    <p class="eyebrow">
+      ORDER CONFIRMED
+    </p>
+
+    <h1>
+      Thank you for
+      <em>your order.</em>
+    </h1>
+
+    <p class="message">
+      Your order has been successfully received.
+      We appreciate your purchase and hope you enjoy
+      your NexaCart experience.
+    </p>
+
+    <div class="order-box">
+
+      <div class="order-label">
+        Order number
+      </div>
+
+      <div class="order-number" id="orderNumber">
+        NX-00000000
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <a href="shop.html" class="btn btn-primary">
+        CONTINUE SHOPPING
+      </a>
+
+      <a href="index.html" class="btn btn-secondary">
+        BACK TO HOME
+      </a>
+
+    </div>
+
+    <p class="note">
+      A confirmation message would normally be sent to your email.
+    </p>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+
+  <div class="footer-inner">
+
+    <span>
+      © 2026 NexaCart. All rights reserved.
+    </span>
+
+    <span>
+      Modern commerce, thoughtfully designed.
+    </span>
+
+  </div>
+
+</footer>
+
+<script>
+
+const orderNumber = document.getElementById("orderNumber");
+
+const params = new URLSearchParams(
+  window.location.search
+);
+
+const orderFromUrl = params.get("order");
+
+let savedOrder = null;
+
+try{
+
+  savedOrder = JSON.parse(
+    localStorage.getItem("nexacartLastOrder")
+  );
+
+}catch(error){
+
+  savedOrder = null;
+
+}
+
+if(orderFromUrl){
+
+  orderNumber.textContent = orderFromUrl;
+
+}else if(savedOrder && savedOrder.id){
+
+  orderNumber.textContent = savedOrder.id;
+
+}else{
+
+  orderNumber.textContent =
+    "NX-" +
+    Date.now().toString().slice(-8);
+
+}
+
+</script>
+
+</body>
+</html>
