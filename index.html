@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NexaCart — Modern Shopping, Simply Better</title>
+
+  <meta
+    name="description"
+    content="NexaCart is a modern online shopping destination for electronics, fashion, accessories and everyday essentials."
+  >
+
+  <meta name="theme-color" content="#171614">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       TOP ANNOUNCEMENT
+  ========================== -->
+  <div class="announcement-bar">
+    <p>FREE SHIPPING ON ORDERS OVER $75</p>
+  </div>
+
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="site-header">
+
+    <div class="header-container">
+
+      <a href="index.html" class="brand" aria-label="NexaCart Home">
+        NEXA<span>CART</span>
+      </a>
+
+      <nav class="desktop-navigation" aria-label="Main Navigation">
+
+        <a href="index.html" class="nav-active">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a href="categories.html">
+          Categories
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <div class="header-tools">
+
+        <a href="shop.html" class="search-button" aria-label="Search products">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <path d="M16 16L21 21"></path>
+          </svg>
+
+          <span>Search</span>
+
+        </a>
+
+
+        <a href="cart.html" class="cart-button" aria-label="Shopping cart">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 5h2l1.5 10h10L20 8H7"></path>
+            <circle cx="10" cy="19" r="1"></circle>
+            <circle cx="17" cy="19" r="1"></circle>
+          </svg>
+
+          <span>Cart</span>
+
+          <b id="cartCount">0</b>
+
+        </a>
+
+
+        <button
+          type="button"
+          class="mobile-menu-button"
+          id="menuToggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-navigation" id="mobileNav" aria-label="Mobile Navigation">
+
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html">Cart</a>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+    <section class="hero-section">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span></span>
+          THE NEW NEXACART EDIT
+        </div>
+
+
+        <h1>
+          Everything you need.
+          <em>Nothing you don't.</em>
+        </h1>
+
+
+        <p class="hero-description">
+          Discover carefully selected products across technology,
+          fashion, accessories and modern living — all in one place.
+        </p>
+
+
+        <div class="hero-actions">
+
+          <a href="shop.html" class="primary-button">
+            Shop Collection
+            <span>↗</span>
+          </a>
+
+          <a href="categories.html" class="secondary-link">
+            Explore Categories
+            <span>→</span>
+          </a>
+
+        </div>
+
+
+        <div class="hero-detail">
+
+          <strong>01</strong>
+
+          <p>
+            Curated products<br>
+            for everyday life
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="hero-visual">
+
+        <div class="hero-image-wrapper">
+
+          <img
+            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1400&q=85"
+            alt="Premium wrist watch"
+          >
+
+        </div>
+
+
+        <div class="hero-product-card">
+
+          <span>FEATURED ITEM</span>
+
+          <h2>
+            Classic<br>
+            Wrist Watch
+          </h2>
+
+          <a href="product.html?id=classic-wrist-watch">
+            View product →
+          </a>
+
+        </div>
+
+
+        <div class="hero-number">
+          N<span>.</span>01
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         INTRO STATEMENT
+    ========================== -->
+    <section class="intro-section">
+
+      <div class="intro-label">
+        OUR APPROACH
+      </div>
+
+
+      <div class="intro-content">
+
+        <h2>
+          Shopping should feel
+          <em>simple.</em>
+        </h2>
+
+        <p>
+          NexaCart brings useful, stylish and reliable products
+          together in a thoughtfully designed shopping experience.
+          Less searching. Less clutter. Better choices.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+    <section class="category-section">
+
+      <div class="section-header">
+
+        <div>
+
+          <span class="section-label">
+            SHOP BY CATEGORY
+          </span>
+
+          <h2>
+            Find what fits
+            <em>your world.</em>
+          </h2>
+
+        </div>
+
+
+        <a href="categories.html" class="view-all-link">
+          View all categories →
+        </a>
+
+      </div>
+
+
+
+      <div class="category-grid">
+
+        <!-- Electronics -->
+        <a
+          href="shop.html?category=electronics"
+          class="category-card category-electronics"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=85"
+            alt="Modern electronics"
+            loading="lazy"
+          >
+
+          <div class="category-overlay">
+
+            <span>01</span>
+
+            <div>
+              <h3>Electronics</h3>
+              <p>Smart technology →</p>
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- Fashion -->
+        <a
+          href="shop.html?category=fashion"
+          class="category-card"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=85"
+            alt="Modern fashion"
+            loading="lazy"
+          >
+
+          <div class="category-overlay">
+
+            <span>02</span>
+
+            <div>
+              <h3>Fashion</h3>
+              <p>Everyday style →</p>
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- Accessories -->
+        <a
+          href="shop.html?category=accessories"
+          class="category-card"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85"
+            alt="Premium accessories"
+            loading="lazy"
+          >
+
+          <div class="category-overlay">
+
+            <span>03</span>
+
+            <div>
+              <h3>Accessories</h3>
+              <p>Complete your look →</p>
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- Home -->
+        <a
+          href="shop.html?category=home"
+          class="category-card category-home"
+        >
+
+          <img
+            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85"
+            alt="Modern home lifestyle"
+            loading="lazy"
+          >
+
+          <div class="category-overlay">
+
+            <span>04</span>
+
+            <div>
+              <h3>Home & Lifestyle</h3>
+              <p>Make your space yours →</p>
+            </div>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FEATURED PRODUCTS
+    ========================== -->
+    <section class="featured-section">
+
+      <div class="section-header">
+
+        <div>
+
+          <span class="section-label">
+            FEATURED PRODUCTS
+          </span>
+
+          <h2>
+            This week's
+            <em>selection.</em>
+          </h2>
+
+        </div>
+
+
+        <a href="shop.html" class="view-all-link">
+          Shop all products →
+        </a>
+
+      </div>
+
+
+
+      <div class="featured-grid">
+
+        <!-- Product 01 -->
+        <article class="product-card">
+
+          <a
+            href="product.html?id=wireless-headphones"
+            class="product-image"
+          >
+
+            <span class="product-badge">
+              BESTSELLER
+            </span>
+
+            <img
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+              alt="Wireless headphones"
+              loading="lazy"
+            >
+
+          </a>
+
+
+          <div class="product-information">
+
+            <div>
+
+              <span class="product-category">
+                ELECTRONICS
+              </span>
+
+              <h3>
+                <a href="product.html?id=wireless-headphones">
+                  Wireless Headphones
+                </a>
+              </h3>
+
+            </div>
+
+            <strong>$89</strong>
+
+          </div>
+
+
+          <a
+            href="product.html?id=wireless-headphones"
+            class="product-link"
+          >
+            View product <span>↗</span>
+          </a>
+
+        </article>
+
+
+
+        <!-- Product 02 -->
+        <article class="product-card">
+
+          <a
+            href="product.html?id=classic-wrist-watch"
+            class="product-image"
+          >
+
+            <span class="product-badge">
+              FEATURED
+            </span>
+
+            <img
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+              alt="Classic wrist watch"
+              loading="lazy"
+            >
+
+          </a>
+
+
+          <div class="product-information">
+
+            <div>
+
+              <span class="product-category">
+                ACCESSORIES
+              </span>
+
+              <h3>
+                <a href="product.html?id=classic-wrist-watch">
+                  Classic Wrist Watch
+                </a>
+              </h3>
+
+            </div>
+
+            <strong>$120</strong>
+
+          </div>
+
+
+          <a
+            href="product.html?id=classic-wrist-watch"
+            class="product-link"
+          >
+            View product <span>↗</span>
+          </a>
+
+        </article>
+
+
+
+        <!-- Product 03 -->
+        <article class="product-card">
+
+          <a
+            href="product.html?id=urban-running-shoes"
+            class="product-image"
+          >
+
+            <span class="product-badge sale-badge">
+              SALE
+            </span>
+
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85"
+              alt="Urban running shoes"
+              loading="lazy"
+            >
+
+          </a>
+
+
+          <div class="product-information">
+
+            <div>
+
+              <span class="product-category">
+                FASHION
+              </span>
+
+              <h3>
+                <a href="product.html?id=urban-running-shoes">
+                  Urban Running Shoes
+                </a>
+              </h3>
+
+            </div>
+
+            <strong>$74</strong>
+
+          </div>
+
+
+          <a
+            href="product.html?id=urban-running-shoes"
+            class="product-link"
+          >
+            View product <span>↗</span>
+          </a>
+
+        </article>
+
+
+
+        <!-- Product 04 -->
+        <article class="product-card">
+
+          <a
+            href="product.html?id=premium-leather-bag"
+            class="product-image"
+          >
+
+            <span class="product-badge">
+              NEW
+            </span>
+
+            <img
+              src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85"
+              alt="Premium leather bag"
+              loading="lazy"
+            >
+
+          </a>
+
+
+          <div class="product-information">
+
+            <div>
+
+              <span class="product-category">
+                ACCESSORIES
+              </span>
+
+              <h3>
+                <a href="product.html?id=premium-leather-bag">
+                  Premium Leather Bag
+                </a>
+              </h3>
+
+            </div>
+
+            <strong>$99</strong>
+
+          </div>
+
+
+          <a
+            href="product.html?id=premium-leather-bag"
+            class="product-link"
+          >
+            View product <span>↗</span>
+          </a>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         EDITORIAL SECTION
+    ========================== -->
+    <section class="editorial-section">
+
+      <div class="editorial-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85"
+          alt="Modern shopping experience"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <div class="editorial-content">
+
+        <span class="section-label">
+          THE NEXACART STANDARD
+        </span>
+
+        <h2>
+          Good products.
+          <em>Clear choices.</em>
+        </h2>
+
+        <p>
+          We focus on products that combine usefulness,
+          design and everyday value — so finding something
+          worth buying feels effortless.
+        </p>
+
+        <a href="about.html" class="outline-button">
+          Discover NexaCart
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         VALUES
+    ========================== -->
+    <section class="values-section">
+
+      <div class="values-heading">
+
+        <span class="section-label">
+          WHY NEXACART
+        </span>
+
+        <h2>
+          Built around
+          <em>better shopping.</em>
+        </h2>
+
+      </div>
+
+
+      <div class="value-item">
+
+        <span>01</span>
+
+        <h3>Curated</h3>
+
+        <p>
+          A focused selection instead of endless
+          products you don't need.
+        </p>
+
+      </div>
+
+
+      <div class="value-item">
+
+        <span>02</span>
+
+        <h3>Simple</h3>
+
+        <p>
+          Clear navigation and a straightforward
+          shopping experience from start to finish.
+        </p>
+
+      </div>
+
+
+      <div class="value-item">
+
+        <span>03</span>
+
+        <h3>Modern</h3>
+
+        <p>
+          A polished digital experience designed
+          for today's connected shopper.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FINAL CTA
+    ========================== -->
+    <section class="final-cta">
+
+      <div>
+
+        <span class="section-label light-label">
+          START EXPLORING
+        </span>
+
+        <h2>
+          Find something
+          <em>worth having.</em>
+        </h2>
+
+      </div>
+
+
+      <a href="shop.html" class="round-cta">
+
+        <span>Shop</span>
+
+        <strong>↗</strong>
+
+      </a>
+
+    </section>
+
+
+
+    <!-- =========================
+         NEWSLETTER
+    ========================== -->
+    <section class="newsletter-section">
+
+      <div class="newsletter-heading">
+
+        <span class="section-label">
+          NEXACART JOURNAL
+        </span>
+
+        <h2>
+          Fresh finds.
+          <em>No noise.</em>
+        </h2>
+
+      </div>
+
+
+      <form id="newsletterForm" class="newsletter-form">
+
+        <label for="newsletterEmail">
+          Email address
+        </label>
+
+
+        <div class="newsletter-input">
+
+          <input
+            type="email"
+            id="newsletterEmail"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+
+          <button type="submit">
+            Subscribe →
+          </button>
+
+        </div>
+
+
+        <small>
+          Get occasional updates about new products and collections.
+        </small>
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="site-footer">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <a href="index.html" class="brand">
+          NEXA<span>CART</span>
+        </a>
+
+        <p>
+          Modern shopping for everyday living.
+          Carefully selected products, simply presented.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Shop</h3>
+
+        <a href="shop.html">All Products</a>
+        <a href="categories.html">Categories</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Company</h3>
+
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Categories</h3>
+
+        <a href="shop.html?category=electronics">
+          Electronics
+        </a>
+
+        <a href="shop.html?category=fashion">
+          Fashion
+        </a>
+
+        <a href="shop.html?category=accessories">
+          Accessories
+        </a>
+
+        <a href="shop.html?category=home">
+          Home & Lifestyle
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 NexaCart. All rights reserved.
+      </span>
+
+      <span>
+        Modern commerce, thoughtfully designed.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- Shared JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+  </html>
